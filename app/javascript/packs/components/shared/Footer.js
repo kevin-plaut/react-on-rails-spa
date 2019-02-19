@@ -7,7 +7,12 @@ class Footer extends Component {
 		return (
       <div>
         <Navbar bg="light" variant="light" expand="lg" fixed="bottom">
-					<span>Footer</span>
+					<div>
+						<span>React-on-Rails SPA by </span>
+						<a href="https://github.com/DenisePillette" target="new"> DenisePillette</a>
+						<span> and </span>
+						<a href="https://github.com/ChiefDakota" target="new">ChiefDakota</a>
+					</div>
 				</Navbar>
       </div>
     )

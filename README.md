@@ -1,4 +1,4 @@
-# React on Rails S.P.A.
+# React on Rails SPA
 ## Running Locally
 * Use a Ruby version manager (such as `rbenv`) to install and/or specify Ruby version `2.5.0`
 * Run the following<br />
