@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import AuthService from '../../services/AuthService'
+
+const Auth = new AuthService()
 
 class Header extends Component {
+
+	handleLogout() {
+    Auth.logout()
+    this.props.history.push('/login');
+  }
+
 	render () {
 		return (
       <div>
-        <Navbar bg="light" variant="light" expand="lg" fixed="top">
+        <Navbar collapseOnSelect bg="light" variant="light" expand="lg" fixed="top">
 					<NavLink to="/">
 	          <Navbar.Brand href="/">React-on-Rails</Navbar.Brand>
 					</NavLink>
@@ -16,9 +25,24 @@ class Header extends Component {
 							<NavLink to="/">
               	<Nav.Link href="/">Home</Nav.Link>
 							</NavLink>
+							{!Auth.loggedIn() &&
+								<NavLink to="/signup">
+									<Nav.Link href="/signup">Sign Up</Nav.Link>
+								</NavLink>
+							}
+							{!Auth.loggedIn() &&
+								<NavLink to="/login">
+									<Nav.Link href="/login">Login</Nav.Link>
+								</NavLink>
+							}
 							<NavLink to="/about">
 	              <Nav.Link href="/about">About</Nav.Link>
 							</NavLink>
+							{Auth.loggedIn() &&
+								<NavLink to="/">
+									<Nav.Link href="/" onClick={this.handleLogout.bind(this)}>Logout</Nav.Link>
+								</NavLink>
+						  }
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -38,4 +62,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
