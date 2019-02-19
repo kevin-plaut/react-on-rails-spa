@@ -6,7 +6,7 @@ class Header extends Component {
 	render () {
 		return (
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" variant="light" expand="lg" fixed="top">
 					<NavLink to="/">
 	          <Navbar.Brand href="/">React-on-Rails</Navbar.Brand>
 					</NavLink>

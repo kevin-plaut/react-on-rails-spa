@@ -5,7 +5,6 @@ class LandingPage extends Component {
 	render () {
 		return (
 			<div className='text'>
-				<br />
         <h1>Hey there!</h1>
 				<br />
 				<h3>This is the 'Home' page<br />...and these are our puppies!</h3>
