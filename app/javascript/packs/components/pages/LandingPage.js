@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Jumbotron } from 'react-bootstrap'
-import puppies from '../../assets/images/puppies.png'
+import puppies from '../../assets/images/puppies-park-1.png'
 
 class LandingPage extends Component {
 	render () {
 		return (
 			<div className='text'>
+				<br />
         <h1>Hey there!</h1>
 				<br />
-				<h3>This is the landing page<br />...and these are my puppies!</h3>
-				<img className='image' src={puppies} />
+				<h3>This is the 'Home' page<br />...and these are our puppies!</h3>
+				<br />
+				<img className='image' src={puppies} alt="Puppies at the park (1)"/>
 			</div>
     )
   }
