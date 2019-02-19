@@ -1,10 +1,22 @@
 @import '~bootstrap/dist/css/bootstrap';
 
-div.text {
+.center {
+  display: block;
+  margin: auto;
+  padding: 10px;
   text-align: center;
 };
 
 .image {
   max-width: 500px;
   max-height: 500px;
+  padding: 10px;
+};
+
+.form-control {
+  display: block;
+  margin: auto;
+  width: 35% !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
 };
