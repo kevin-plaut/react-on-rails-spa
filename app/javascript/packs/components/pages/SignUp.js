@@ -75,11 +75,9 @@ class SignUp extends Component {
           />
         </Form>
         {this.state.createSuccess && <Redirect to="/welcome"/> }
+        <br />
         <div>
-          Already have an account? <br />
-          <NavLink to="/login">
-            <a href="/login">Log in here</a>
-          </NavLink>
+          Already have an account? <NavLink to="/login"><a href="/login">Login</a></NavLink>
         </div>
       </div>
     )

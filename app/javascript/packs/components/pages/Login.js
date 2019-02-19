@@ -58,10 +58,7 @@ class Login extends Component {
         </Form>
         <br />
         <div>
-          Don't have an account yet? <br />
-					<NavLink to="/signup">
-						<a href="/signup">Sign up here</a>
-					</NavLink>
+          Don't have an account? <NavLink to="/signup"><a href="/signup">Sign up</a></NavLink>
         </div>
       </div>
     )
