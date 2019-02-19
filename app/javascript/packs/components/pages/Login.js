@@ -31,8 +31,9 @@ class Login extends Component {
       <div className="center">
         <h2>Login</h2>
         <br />
-        <Form>
+        <Form className="login-form">
           <FormControl
+            className="login-form-control"
             type="text"
             name="email"
             placeholder="Email"
@@ -40,6 +41,7 @@ class Login extends Component {
             value={this.state.email}
           />
           <FormControl
+            className="login-form-control"
             type="password"
             name="password"
             placeholder="Password"
@@ -48,6 +50,7 @@ class Login extends Component {
           />
           <br />
           <FormControl
+            className="login-form-control"
             type="submit"
             name="submit"
             onClick={this.handleSubmit.bind(this)}

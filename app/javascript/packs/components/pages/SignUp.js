@@ -38,32 +38,37 @@ class SignUp extends Component {
       <div className="center">
         <h2>Sign Up</h2>
         <br />
-        <Form>
+        <Form className="signup-form">
           <FormControl
+            className="signup-form-control"
             type="text"
             name="name"
             placeholder="Name"
             onChange={this.handleChange.bind(this)}
           />
           <FormControl
+            className="signup-form-control"
             type="text"
             name="email"
             placeholder="Email"
             onChange={this.handleChange.bind(this)}
           />
           <FormControl
+            className="signup-form-control"
             type="password"
             name="password"
             placeholder="Password"
             onChange={this.handleChange.bind(this)}
           />
           <FormControl
+            className="signup-form-control"
             type="password"
             name="password_confirmation"
             placeholder="Confirm"
             onChange={this.handleChange.bind(this)}
           /><br/>
           <FormControl
+            className="signup-form-control"
             type="submit"
             name="submit"
             onClick={this.handleSubmit.bind(this)}
