@@ -7,13 +7,13 @@ import LandingPage from './components/pages/LandingPage'
 import SignUp from './components/pages/SignUp'
 import Login from './components/pages/Login'
 import About from './components/pages/About'
+import Welcome from './components/pages/Welcome'
 
 const Auth = new AuthService()
 
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       user: null
     }
@@ -35,6 +35,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
 					<Route exact path="/signup" component={SignUp} />
 					<Route exact path="/login" component={Login} />
+          <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/about" component={About} />
         </Switch>
 				<br />

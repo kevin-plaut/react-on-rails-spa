@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import puppies from '../../assets/images/puppies-park-2.png'
+import AuthService from '../../services/AuthService'
+import puppies2 from '../../assets/images/puppies-park-2.png'
+
+const Auth = new AuthService()
 
 class About extends Component {
 	render () {
@@ -9,7 +12,7 @@ class About extends Component {
 				<br />
 				<h3>This is the 'About' page!</h3>
 				<br />
-				<img className="image" src={puppies} alt="Puppies at the park (2)" />
+				<img className="image" src={puppies2} alt="Puppies at the park (2)" />
       </div>
     )
   }
