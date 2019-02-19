@@ -11,7 +11,7 @@ class Footer extends Component {
 						<span>React-on-Rails SPA by </span>
 						<a href="https://github.com/ChiefDakota" target="new">ChiefDakota</a>
 						<span> and </span>
-						<a href="https://github.com/DenisePillette" target="new"> DenisePillette</a>
+						<a href="https://github.com/DenisePillette" target="new">DenisePillette</a>
 					</div>
 				</Navbar>
       </div>
