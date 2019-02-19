@@ -21,7 +21,7 @@ class Login extends Component {
     event.preventDefault()
     this.Auth.login(this.state.email, this.state.password)
     .then(res =>{
-      this.props.history.replace('/')
+      this.props.history.replace('/welcome')
     })
     .catch(err =>{ alert(err) })
   }
