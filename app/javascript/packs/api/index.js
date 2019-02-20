@@ -15,4 +15,28 @@ let createUser = function(user) {
   })
 }
 
-export { createUser }
+let getPosts = function() {
+  return fetch(BASE + '/posts')
+    .then((resp) => {
+      let json = resp.json()
+      console.log(json);
+      return json
+    }
+  )
+}
+
+let createPost = function(post) {
+  return fetch(BASE + '/posts', {
+    body: JSON.stringify(post),
+    headers:{
+        'Content-Type': 'application/json'
+    },
+    method: "POST"
+  })
+  .then((resp) => {
+    let json = resp.json()
+    return json
+  })
+}
+
+export  { createUser, getPosts, createPost }
