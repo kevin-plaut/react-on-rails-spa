@@ -4,7 +4,7 @@ import puppies1 from '../../assets/images/puppies-park-1.png'
 
 const Auth = new AuthService()
 
-class LandingPage extends Component {
+class Home extends Component {
 	render () {
 		return (
 			<div className="center">
@@ -18,4 +18,4 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage;
+export default Home;

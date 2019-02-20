@@ -13,14 +13,13 @@
   padding: 10px;
 };
 
-.login-form, .signup-form {
+.login-form, .signup-form, .new-post-form {
   display: block;
   margin: auto;
   width: 275px !important;
 };
 
-
-.login-form, .login-form-control, .signup-form, .signup-form-control {
+.login-form-control, .signup-form-control {
   display: block;
   margin-top: 5px;
   margin-bottom: 5px;
