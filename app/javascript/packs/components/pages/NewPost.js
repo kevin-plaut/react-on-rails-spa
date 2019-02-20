@@ -11,14 +11,14 @@ class NewPost extends Component {
   constructor(props){
     super(props);
     this.state = {
-      form:{
-        post: ""
+      form: {
+        post: "",
       }
     }
   }
 
   handleChange(event){
-    let {form} = this.state
+    let { form } = this.state
     form[event.target.name] = event.target.value
     this.setState({form: form})
   }

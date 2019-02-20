@@ -15,7 +15,7 @@ import { getPosts, createPost } from './api'
 const Auth = new AuthService()
 
 class App extends Component {
-  constructor(props) {
+  constructor(props){
     super(props)
     this.state = {
       user: null,
@@ -31,20 +31,19 @@ class App extends Component {
   componentWillMount() {
     getPosts()
     .then(APIposts => {
-        this.setState({
-            posts: APIposts
-          })
-        }
-      )
-   }
+      this.setState({
+        posts: APIposts
+      })
+    })
+  }
 
-   handleNewPost(data){
-   createPost(data).then( successPost => {
-     console.log("SUCCESS! New Post:", successPost)
-     getPosts().then( APIposts => {
-         this.setState({posts:APIposts, newPostSuccess: true})
-       })
-   })
+  handleNewPost(data){
+  createPost(data).then( successPost => {
+    console.log("SUCCESS! New Post:", successPost)
+    getPosts().then( APIposts => {
+        this.setState({posts: APIposts, newPostSuccess: true})
+      })
+    })
   }
 
 	render () {
@@ -61,8 +60,8 @@ class App extends Component {
 					<Route exact path="/login" component={Login} />
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/newpost" component={NewPost} />
-          <Route exact path="/posts" component={Posts} />
+          <Route exact path="/posts" render={(props) => <Posts posts={this.state.posts}/>} />
+          <Route exact path="/newpost" render={(props) => <NewPost handleNew={this.handleNewPost.bind(this)} success={this.state.newPostSuccess} />} />
         </Switch>
         <br />
         <br />

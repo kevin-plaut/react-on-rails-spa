@@ -2,7 +2,7 @@ const BASE = 'http://localhost:3000'
 
 let createUser = function(user) {
   let newUser = {user: user}
-  return fetch(BASE+'users', {
+  return fetch(BASE + 'users', {
     body: JSON.stringify(newUser),
     headers: {
       'Content-Type': 'application/json'
@@ -16,17 +16,16 @@ let createUser = function(user) {
 }
 
 let getPosts = function() {
-  return fetch(BASE + '/posts')
-    .then((resp) => {
-      let json = resp.json()
-      console.log(json);
-      return json
-    }
-  )
+  return fetch(BASE + 'posts')
+  .then((resp) => {
+    let json = resp.json()
+    console.log(json);
+    return json
+  })
 }
 
 let createPost = function(post) {
-  return fetch(BASE + '/posts', {
+  return fetch(BASE + 'posts', {
     body: JSON.stringify(post),
     headers:{
         'Content-Type': 'application/json'
@@ -39,4 +38,4 @@ let createPost = function(post) {
   })
 }
 
-export  { createUser, getPosts, createPost }
+export { createUser, getPosts, createPost }

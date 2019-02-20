@@ -16,14 +16,14 @@ class Posts extends Component {
           <Row>
             <Col xs={12}>
               <ListGroup>
-                {this.props.dogs.map((dog, index) =>{
+                {this.props.posts.map((post, index) =>{
                 return (
                   <ListGroupItem
                     key={index}
                     header={
                       <h4>
-                        <span className='dog-post'>
-                          {dog.post}
+                        <span className='post-post'>
+                          {post.post}
                         </span>
                       </h4>
                     }>
