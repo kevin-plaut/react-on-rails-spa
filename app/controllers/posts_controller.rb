@@ -13,6 +13,9 @@ class PostsController < ApplicationController
     else
       render json: {errors: post.errors}, status: 422
     end
+    respond_to do |format|
+      format.json { render json: post }
+    end
   end
 
   private
