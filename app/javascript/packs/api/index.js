@@ -17,24 +17,25 @@ let createUser = function(user) {
 
 let getPosts = function() {
   return fetch(BASE + '/posts')
-  .then((rawResponse) => {
-    let parsedResponse = rawResponse.json()
-    return parsedResponse
+  .then((resp) => {
+    let json = resp.json()
+    console.log(json);
+    return json
   })
 }
 
 let createPost = function(post) {
   let newPost = {post: post}
-  return fetch(BASE + '/newpost', {
+  return fetch(BASE + '/posts', {
     body: JSON.stringify(newPost),
     headers:{
         'Content-Type': 'application/json'
     },
     method: "POST"
   })
-  .then((rawResponse) => {
-    let parsedResponse = rawResponse.json()
-    return parsedResponse
+  .then((resp) => {
+    let json = resp.json()
+    return json
   })
 }
 
