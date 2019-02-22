@@ -13,26 +13,27 @@ class NewPost extends Component {
     this.Auth = new AuthService()
     this.Post = new PostService()
     this.state = {
-      user_id: 2,
-      post: ""
-    };
-    createSuccess: false
-  }
-
-  handleChange(e){
-    this.setState({ [e.target.name]: e.target.value })
+      post: {
+        user_id: 1,
+        // user_id: this.Auth.getUserId(),
+        post: "hello"
+      },
+      createSuccess: false,
+    }
   }
 
   handleChange(event){
-    let post = event.target.value
+    let post = this.state
+    post[event.target.post] = event.target.value
     this.setState({ post: post })
     console.log(this.state)
   }
 
   handleSubmit(event){
     event.preventDefault()
-    console.log(this.state)
-    this.Post.createPost(this.state.post, this.state.user_id)
+    this.Post.createPost(this.state.new_post).then  (successPost => {
+      console.log("Post Success!", successPost); this.setState({createSuccess: true})
+    })
     .catch(err =>{ alert(err) })
   }
 

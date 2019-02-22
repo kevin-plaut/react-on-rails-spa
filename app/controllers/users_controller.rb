@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     if user.save
       # config.token_secret_signature_key = -> { Rails.application.credentials.read }
       payload = {
-        user: user
+        user: user,
+        jwt: token
       }
       render json: payload, status: 201
     else

@@ -7,9 +7,9 @@ export default class PostService extends AuthService {
       body: JSON.stringify({
         post: post
     	})
-    }).then((rawResponse) => {
-        let parsedResponse = rawResponse.json()
-        return parsedResponse
+    }).then((resp) => {
+      let json = resp.json()
+      return json
     })
   }
 }

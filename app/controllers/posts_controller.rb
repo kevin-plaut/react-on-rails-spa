@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
-  # skip_before_action :authenticate_user
+  before_action :authenticate_user, except: [ :index, :create ]
 
   def index
     posts = Post.all
@@ -8,21 +7,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    new_post = Post.new(post_params)
-    if new_post.save
-      payload = {
-        user_id: user_id,
-        post: new_post
-      }
-      render json: payload, status: 201
+    post = Post.new(post_params)
+    if post.save
+      render json: post, status: 201
     else
-      render json: {errors: new_post.errors}, status: 422
+      render json: {errors: post.errors}, status: 422
     end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:user_id)
+    params.require(:post).permit(:user_id, :post)
   end
 end
