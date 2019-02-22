@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import registerServiceWorker from './registerServiceWorker'
 import App from './App'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,5 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <Route path="/" component={App} />
     </Router>,
   document.body.appendChild(document.createElement('div'))
-  )
+  );
+  registerServiceWorker();
 })

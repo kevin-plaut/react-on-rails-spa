@@ -1,31 +1,39 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import {
   Table, Row, Col, FormControl, Form
 } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
+import { getPosts, createPost } from '../../api'
 import AuthService from '../../services/AuthService'
-
-const Auth = new AuthService()
+import PostService from '../../services/PostService'
 
 class NewPost extends Component {
   constructor(props){
-    super(props);
+    super(props)
+    this.Auth = new AuthService()
+    this.Post = new PostService()
     this.state = {
-      form: {
-        post: "",
-      }
-    }
+      user_id: 2,
+      post: ""
+    };
+    createSuccess: false
+  }
+
+  handleChange(e){
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleChange(event){
-    let { form } = this.state
-    form[event.target.name] = event.target.value
-    this.setState({form: form})
+    let post = event.target.value
+    this.setState({ post: post })
+    console.log(this.state)
   }
 
   handleSubmit(event){
-    this.props.handleNew(this.state.form)
     event.preventDefault()
+    console.log(this.state)
+    this.Post.createPost(this.state.post, this.state.user_id)
+    .catch(err =>{ alert(err) })
   }
 
   render() {
@@ -42,7 +50,6 @@ class NewPost extends Component {
                   name="post"
                   placeholder=""
                   onChange={this.handleChange.bind(this)}
-                  value={this.state.form.post}
                 />
                 <br/>
                 <FormControl
@@ -51,9 +58,7 @@ class NewPost extends Component {
                   className="submit"
                   onClick={this.handleSubmit.bind(this)}
                 />
-                {this.props.success &&
-                  <Redirect to="/posts" />
-                }
+                {this.state.createSuccess && <Redirect to="/posts" /> }
               </Col>
             </Form>
           </Row>
