@@ -9,10 +9,9 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      config.token_secret_signature_key = -> { Rails.application.credentials.read }
+      # config.token_secret_signature_key = -> { Rails.application.credentials.read }
       payload = {
-        user: user,
-        jwt: token
+        user: user
       }
       render json: payload, status: 201
     else
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
   end
 
    private
-   
+
    def user_params
      params.require(:user).permit(:email, :name, :password, :password_confirmation)
    end

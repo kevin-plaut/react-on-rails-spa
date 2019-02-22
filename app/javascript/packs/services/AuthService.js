@@ -38,7 +38,6 @@ export default class AuthService {
 		})
 	}
 
-
 	loggedIn() {
 		const token = this.getToken()
 		return !!token && !this.isTokenExpired(token)

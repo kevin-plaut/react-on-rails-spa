@@ -74,7 +74,7 @@ class SignUp extends Component {
             onClick={this.handleSubmit.bind(this)}
           />
         </Form>
-        {this.state.createSuccess && <Redirect to="/welcome"/> }
+        {this.state.createSuccess && <Redirect to="/welcome" /> }
         <br />
         <div>
           Already have an account? <NavLink to="/login"><a href="/login">Login</a></NavLink>
