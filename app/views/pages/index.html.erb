@@ -1,2 +1,14 @@
-<%= javascript_pack_tag 'index' %>
-<%= stylesheet_pack_tag 'assets/stylesheets/app' %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SPA</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'index' %>
+    <%= stylesheet_pack_tag 'assets/stylesheets/app' %>
+  </body>
+</html>

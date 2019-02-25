@@ -4,12 +4,5 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import App from './App'
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Router>
-      <Route path="/" component={App} />
-    </Router>,
-  document.body.appendChild(document.createElement('div'))
-  );
-  registerServiceWorker();
-})
+ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+registerServiceWorker();

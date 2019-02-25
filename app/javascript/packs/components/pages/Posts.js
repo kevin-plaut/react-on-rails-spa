@@ -3,8 +3,9 @@ import {
   Table, Col, Row, ListGroup, ListGroupItem
 } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
-import AuthService from '../../services/AuthService'
 import { getPosts } from '../../api'
+import AuthService from '../../services/AuthService'
+// import withAuth from '../../services/withAuth'
 
 const Auth = new AuthService()
 const BASE = 'http://localhost:3000'

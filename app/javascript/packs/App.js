@@ -10,6 +10,8 @@ import NewPost from './components/pages/NewPost'
 import Posts from './components/pages/Posts'
 import Footer from './components/shared/Footer'
 import AuthService from './services/AuthService'
+import withAuth from './services/withAuth'
+
 import { getPosts } from './api'
 
 const Auth = new AuthService()
@@ -21,6 +23,10 @@ class App extends Component {
       user: null,
       posts: []
     }
+  }
+
+  handleNewUser(user) {
+    console.log(user)
   }
 
   componentWillMount() {
