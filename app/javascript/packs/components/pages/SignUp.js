@@ -27,7 +27,7 @@ class SignUp extends Component {
 
   handleSubmit(event){
     event.preventDefault()
-    this.Auth.signup(this.state.user).then (successUser => {
+    this.Auth.register(this.state.user).then (successUser => {
       console.log("Create Success!", successUser); this.setState({createSuccess: true})
     })
     .catch(err =>{ alert(err) })

@@ -1,37 +1,38 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import {
   Table, Row, Col, FormControl, Form
 } from 'react-bootstrap'
 import { getPosts, createPost } from '../../api'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
+// import withAuth from '../../services/withAuth'
 
 class NewPost extends Component {
   constructor(props){
     super(props)
-    this.Auth = new AuthService()
+    // this.Auth = new AuthService()
     this.Post = new PostService()
     this.state = {
-      post: {
-        post: "hello",
+      new_post: {
+        post: "",
         user_id: 1
-        // user_id: this.Auth.getUserId(),
+        // user_id: this.Auth.getUserId()
       },
       createSuccess: false,
     }
   }
 
   handleChange(event){
-    let post = this.state
+    let post = this.state.new_post
     post[event.target.name] = event.target.value
-    this.setState({ post: post })
+    this.setState({ new_post: post })
     console.log(this.state)
   }
 
   handleSubmit(event){
     event.preventDefault()
-    this.Post.createPost(this.state.post).then  (successPost => {
+    this.Post.createPost(this.state.new_post).then  (successPost => {
       console.log("Post Success!", successPost); this.setState({createSuccess: true})
     })
     .catch(err =>{ alert(err) })
