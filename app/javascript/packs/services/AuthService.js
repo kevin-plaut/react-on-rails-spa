@@ -25,7 +25,6 @@ export default class AuthService {
 	}
 
 	signup(user) {
-		console.log(user);
 		return this.fetch(`${this.domain}/users`, {
 			method: 'POST',
 			body: JSON.stringify({

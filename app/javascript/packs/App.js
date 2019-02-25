@@ -11,7 +11,6 @@ import Posts from './components/pages/Posts'
 import Footer from './components/shared/Footer'
 import AuthService from './services/AuthService'
 import withAuth from './services/withAuth'
-
 import { getPosts } from './api'
 
 const Auth = new AuthService()
@@ -21,21 +20,7 @@ class App extends Component {
     super(props)
     this.state = {
       user: null,
-      posts: []
     }
-  }
-
-  handleNewUser(user) {
-    console.log(user)
-  }
-
-  componentWillMount() {
-    getPosts()
-    .then(APIposts => {
-      this.setState({
-        posts: APIposts
-      })
-    })
   }
 
 	render () {
@@ -53,7 +38,7 @@ class App extends Component {
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/about" component={About} />
           <Route exact path="/newpost" component={NewPost} />
-          <Route exact path="/posts" component={Posts} />
+          <Route exact path="/viewposts" component={Posts} />
         </Switch>
         <br />
         <br />

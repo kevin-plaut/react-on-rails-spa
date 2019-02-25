@@ -5,7 +5,8 @@ export default class PostService extends AuthService {
     return this.fetch(`${this.domain}/posts`, {
       method: 'POST',
       body: JSON.stringify({
-        new_post: new_post    	})
+        new_post: new_post
+      })
     }).then((res) => {
       return Promise.resolve(res)
     })
