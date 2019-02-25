@@ -46,8 +46,8 @@ class Header extends Component {
 								</NavLink>
 							}
 							{Auth.loggedIn() &&
-								<NavLink to="/posts">
-									<Nav.Link href="/posts">Posts</Nav.Link>
+								<NavLink to="/viewposts">
+									<Nav.Link href="/viewposts">Posts</Nav.Link>
 								</NavLink>
 							}
 							<NavLink to="/about">

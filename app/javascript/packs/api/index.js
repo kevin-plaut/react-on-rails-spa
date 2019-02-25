@@ -16,11 +16,12 @@ let createUser = function(user) {
 }
 
 let getPosts = function() {
-  return fetch(BASE + '/posts')
-  .then((rawResponse) => {
-    let parsedResponse = rawResponse.json()
-    return parsedResponse
-  })
+    return fetch(BASE + '/posts')
+        .then((resp) => {
+            let json = resp.json()
+            return json
+            console.log(json)
+        })
 }
 
 let createPost = function(post) {
