@@ -23,8 +23,8 @@ let getPosts = function() {
   })
 }
 
-let createPost = function(post, user_id) {
-  let newPost = {post: post, user_id: user_id}
+let createPost = function(post) {
+  let newPost = {post: post}
   return fetch(BASE + '/posts', {
     body: JSON.stringify(newPost),
     headers:{
