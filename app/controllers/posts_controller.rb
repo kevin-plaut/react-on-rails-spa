@@ -9,12 +9,13 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     if post.save
-      render json: post, status: 201
+      payload = {
+        post: post,
+        user_id: user_id
+      }
+      render json: payload, status: 201
     else
       render json: {errors: post.errors}, status: 422
-    end
-    respond_to do |format|
-      format.json { render json: post }
     end
   end
 

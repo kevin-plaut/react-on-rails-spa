@@ -7,6 +7,7 @@ import AuthService from '../../services/AuthService'
 import { getPosts } from '../../api'
 
 const Auth = new AuthService()
+const BASE = 'http://localhost:3000'
 
 class Posts extends Component {
   constructor(props){
@@ -14,6 +15,13 @@ class Posts extends Component {
     this.state = {
       posts: []
     }
+  }
+
+  componentWillMount() {
+    return fetch(BASE + '/posts')
+      .then((resp) => {
+        return resp.json()
+      })
   }
 
   render() {
@@ -25,7 +33,7 @@ class Posts extends Component {
           <Row>
             <Col xs={12}>
               <ListGroup>
-                {this.props.posts}
+                {this.state.posts}
               </ListGroup>
             </Col>
           </Row>

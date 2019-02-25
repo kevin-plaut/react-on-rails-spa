@@ -47,7 +47,7 @@ class App extends Component {
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/about" component={About} />
           <Route exact path="/newpost" component={NewPost} />
-          <Route exact path="/posts" render={(props) => <Posts posts={this.state.posts}/>} />
+          <Route exact path="/posts" component={Posts} />
         </Switch>
         <br />
         <br />
