@@ -17,15 +17,14 @@ let createUser = function(user) {
 
 let getPosts = function() {
   return fetch(BASE + '/posts')
-  .then((resp) => {
-    let json = resp.json()
-    console.log(json);
-    return json
+  .then((rawResponse) => {
+    let parsedResponse = rawResponse.json()
+    return parsedResponse
   })
 }
 
-let createPost = function(post) {
-  let newPost = {post: post}
+let createPost = function(post, user_id) {
+  let newPost = {post: post, user_id: user_id}
   return fetch(BASE + '/posts', {
     body: JSON.stringify(newPost),
     headers:{
@@ -33,9 +32,9 @@ let createPost = function(post) {
     },
     method: "POST"
   })
-  .then((resp) => {
-    let json = resp.json()
-    return json
+  .then((rawResponse) => {
+    let parsedResponse = rawResponse.json()
+    return parsedResponse
   })
 }
 

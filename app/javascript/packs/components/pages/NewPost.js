@@ -14,9 +14,9 @@ class NewPost extends Component {
     this.Post = new PostService()
     this.state = {
       post: {
-        user_id: 1,
+        post: "hello",
+        user_id: 1
         // user_id: this.Auth.getUserId(),
-        post: "hello"
       },
       createSuccess: false,
     }
@@ -24,14 +24,14 @@ class NewPost extends Component {
 
   handleChange(event){
     let post = this.state
-    post[event.target.post] = event.target.value
+    post[event.target.name] = event.target.value
     this.setState({ post: post })
     console.log(this.state)
   }
 
   handleSubmit(event){
     event.preventDefault()
-    this.Post.createPost(this.state.new_post).then  (successPost => {
+    this.Post.createPost(this.state.post).then  (successPost => {
       console.log("Post Success!", successPost); this.setState({createSuccess: true})
     })
     .catch(err =>{ alert(err) })

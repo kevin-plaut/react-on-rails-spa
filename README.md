@@ -21,14 +21,30 @@ $ rails db:migrate
 ```
 
 ## Running Locally
+### Running with [foreman](https://github.com/ddollar/foreman)
+_Ruby users should take care not to install foreman in their project's Gemfile_
+
+In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start a [Rails](https://github.com/rails/rails) server and [Webpacker](https://github.com/rails/webpacker):
+```xml
+$ foreman start -f Procfile.dev -p 3000
+```
+
+### Running Rails and Webpacker separately
 In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start a [Rails](https://github.com/rails/rails) server:
 ```xml
-$ rails s
+$ bundle exec rails s
 ```
 
 In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start [Webpacker](https://github.com/rails/webpacker):
 ```xml
 $ bin/webpack-dev-server
+```
+
+## Troubleshooting
+If getting non-deterministic issues when starting the server, trying running the following:
+```xml
+$ yarn install
+$ yarn upgrade
 ```
 
 ## :star: Collaborators :star:
