@@ -25,7 +25,6 @@ export default class AuthService {
 	}
 
 	signup(user) {
-		console.log(user);
 		return this.fetch(`${this.domain}/users`, {
 			method: 'POST',
 			body: JSON.stringify({
@@ -37,7 +36,6 @@ export default class AuthService {
 			return Promise.resolve(res);
 		})
 	}
-
 
 	loggedIn() {
 		const token = this.getToken()

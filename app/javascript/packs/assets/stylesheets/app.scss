@@ -13,7 +13,7 @@
   padding: 10px;
 };
 
-.login-form, .signup-form, .new-post-form {
+.login-form, .signup-form {
   display: block;
   margin: auto;
   width: 275px !important;
@@ -24,3 +24,24 @@
   margin-top: 5px;
   margin-bottom: 5px;
 };
+
+.post-form {
+  display: block;
+  margin: auto;
+  width: 275px !important;
+};
+
+.post-row {
+  display: block;
+  text-align: left;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 550px !important;
+}
+
+.posts-subtitle {
+  display: block;
+  text-align: left;
+  margin-left: 25px;
+}
