@@ -26,6 +26,8 @@ class Posts extends Component {
   }
 
   render() {
+    const posts = this.state.posts.map((post, index) => <Posts key={post.id} id={post.id} post={post.post} />)
+
     return (
       <div className="center">
         <h1>Posts</h1>
@@ -34,7 +36,7 @@ class Posts extends Component {
           <Row>
             <Col xs={12}>
               <ListGroup>
-                {this.state.posts}
+                {posts}
               </ListGroup>
             </Col>
           </Row>
