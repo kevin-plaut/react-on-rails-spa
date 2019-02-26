@@ -42,10 +42,9 @@ In a separate Terminal window/tab/pane, `cd` into the project directory (if not 
 $ bin/webpack-dev-server
 ```
 
-## Troubleshooting
-If getting non-deterministic issues when starting the server, trying running the following:
+### Troubleshooting
+If getting non-deterministic issues when starting the servers, trying running the following:
 ```xml
-$ yarn install
 $ yarn upgrade
 ```
 
