@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Header from './components/shared/Header'
 import Home from './components/pages/Home'
 import SignUp from './components/pages/SignUp'
@@ -9,11 +9,6 @@ import About from './components/pages/About'
 import NewPost from './components/pages/NewPost'
 import Posts from './components/pages/Posts'
 import Footer from './components/shared/Footer'
-import AuthService from './services/AuthService'
-import withAuth from './services/withAuth'
-import { getPosts } from './api'
-
-const Auth = new AuthService()
 
 class App extends Component {
   constructor(props){
@@ -48,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;

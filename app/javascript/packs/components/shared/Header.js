@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 
@@ -9,7 +9,7 @@ class Header extends Component {
 
 	handleLogout() {
     Auth.logout()
-    this.props.history.push('/login');
+		console.log("Logout Success")
   }
 
 	render () {
@@ -17,45 +17,63 @@ class Header extends Component {
       <div>
         <Navbar collapseOnSelect bg="light" variant="light" expand="lg" fixed="top">
 					<NavLink to="/">
-	          <Navbar.Brand href="/">React-on-Rails SPA</Navbar.Brand>
+	          <Navbar.Brand href="/">
+							React-on-Rails SPA
+						</Navbar.Brand>
 					</NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
 							<NavLink to="/">
-              	<Nav.Link href="/">Home</Nav.Link>
+              	<Nav.Link href="/">
+									Home
+								</Nav.Link>
 							</NavLink>
 							{!Auth.loggedIn() &&
 								<NavLink to="/signup">
-									<Nav.Link href="/signup">Sign Up</Nav.Link>
+									<Nav.Link href="/signup">
+										Sign Up
+									</Nav.Link>
 								</NavLink>
 							}
 							{!Auth.loggedIn() &&
 								<NavLink to="/login">
-									<Nav.Link href="/login">Login</Nav.Link>
+									<Nav.Link href="/login">
+										Login
+									</Nav.Link>
 								</NavLink>
 							}
 							{Auth.loggedIn() &&
 								<NavLink to="/welcome">
-									<Nav.Link href="/welcome">Welcome</Nav.Link>
+									<Nav.Link href="/welcome">
+										Welcome
+									</Nav.Link>
 								</NavLink>
 							}
 							{Auth.loggedIn() &&
 								<NavLink to="/newpost">
-									<Nav.Link href="/newpost">New Post</Nav.Link>
+									<Nav.Link href="/newpost">
+										New Post
+									</Nav.Link>
 								</NavLink>
 							}
 							{Auth.loggedIn() &&
 								<NavLink to="/viewposts">
-									<Nav.Link href="/viewposts">Posts</Nav.Link>
+									<Nav.Link href="/viewposts">
+										Posts
+									</Nav.Link>
 								</NavLink>
 							}
 							<NavLink to="/about">
-	              <Nav.Link href="/about">About</Nav.Link>
+	              <Nav.Link href="/about">
+									About
+								</Nav.Link>
 							</NavLink>
 							{Auth.loggedIn() &&
-								<NavLink to="/">
-									<Nav.Link href="/" onClick={this.handleLogout.bind(this)}>Logout</Nav.Link>
+								<NavLink to="/login">
+									<Nav.Link href="/login" onClick={this.handleLogout.bind(this)}>
+										Logout
+									</Nav.Link>
 								</NavLink>
 							}
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -77,4 +95,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header);
+export default Header;

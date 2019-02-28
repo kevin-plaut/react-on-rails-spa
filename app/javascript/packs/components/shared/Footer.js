@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import { Card, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 
 class Footer extends Component {
-	render () {
+	render() {
 		return (
       <div>
         <Navbar bg="light" variant="light" expand="lg" fixed="bottom">
 					<div>
-						<span>React-on-Rails SPA by </span>
-						<a href="https://github.com/ChiefDakota" target="new">ChiefDakota</a>
-						<span> and </span>
-						<a href="https://github.com/DenisePillette" target="new">DenisePillette</a>
+						<span>
+							React-on-Rails SPA by&nbsp;
+						</span>
+						<a href="https://github.com/ChiefDakota" target="new">
+							ChiefDakota
+						</a>
+						<span>
+							&nbsp;and&nbsp;
+						</span>
+						<a href="https://github.com/DenisePillette" target="new">
+							DenisePillette
+						</a>
 					</div>
 				</Navbar>
       </div>
