@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import AuthService from './AuthService'
 
 export default function withAuth(WrappedComponent) {
+
   const Auth = new AuthService()
+
   return class AuthWrapped extends Component {
     constructor(props) {
       super(props);
@@ -24,7 +26,7 @@ export default function withAuth(WrappedComponent) {
         }
         catch(err){
           Auth.logout()
-          this.props.history.push('/')
+          this.props.history.push('/login')
         }
       }
     }
