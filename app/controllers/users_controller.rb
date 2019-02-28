@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      # config.token_secret_signature_key = -> { Rails.application.credentials.read }
+      token = Knock::AuthToken.new(payload: { sub: user.id }).token
       payload = {
         user: user,
         jwt: token

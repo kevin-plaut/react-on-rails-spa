@@ -4,10 +4,11 @@ import { Table, Col, Row, FormControl, Form } from 'react-bootstrap'
 import { createUser } from '../../api'
 import AuthService from '../../services/AuthService'
 
+const Auth = new AuthService()
+
 class SignUp extends Component {
-  constructor(props) {
-    super(props)
-    this.Auth = new AuthService()
+  constructor() {
+    super()
     this.state = {
       user: {
         name: "",
@@ -15,7 +16,7 @@ class SignUp extends Component {
         password: "",
         password_confirmation: "",
       },
-      createSuccess: false,
+      createSuccess: false
     }
   }
 
@@ -27,16 +28,19 @@ class SignUp extends Component {
 
   handleSubmit(event){
     event.preventDefault()
-    this.Auth.signup(this.state.user).then (successUser => {
-      console.log("Create Success!", successUser); this.setState({createSuccess: true})
-    })
+    Auth.signup(this.state.user)
+      .then (successUser => {
+        console.log("Sign Up Success", successUser); this.setState({createSuccess: true})
+      })
     .catch(err =>{ alert(err) })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="center">
-        <h2>Sign Up</h2>
+        <h1>
+          Sign Up
+        </h1>
         <br />
         <Form className="signup-form">
           <FormControl
@@ -74,10 +78,15 @@ class SignUp extends Component {
             onClick={this.handleSubmit.bind(this)}
           />
         </Form>
-        {this.state.createSuccess && <Redirect to="/welcome" /> }
+        {this.state.createSuccess && <Redirect to="/welcome" />}
         <br />
         <div>
-          Already have an account? <NavLink to="/login"><a href="/login">Login</a></NavLink>
+          Already have an account?&nbsp;
+          <NavLink to="/login">
+            <a href="/login">
+              Login
+            </a>
+          </NavLink>
         </div>
       </div>
     )
