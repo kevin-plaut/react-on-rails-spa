@@ -17,7 +17,7 @@ class UserTokenController < ApplicationController
     if entity.respond_to? :to_token_payload
       Knock::AuthToken.new payload: entity.to_token_payload
     else
-      config.token_secret_signature_key = -> { Rails.application.credentials.read }
+      Knock::AuthToken.new payload: { sub: entity.id }
     end
   end
 

@@ -1,35 +1,42 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 import { Card, FormControl, Form } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 
+const Auth = new AuthService()
+
 class Login extends Component {
-  constructor(){
+  constructor() {
     super()
-    this.Auth = new AuthService()
-    this.state={
+    this.state = {
       email: '',
-      password: ''
+      password: '',
+      loginSuccess: false
     }
   }
 
-  handleChange(e){
-    this.setState({ [e.target.name]: e.target.value })
+  handleChange(event){
+    let login = this.state
+    login[event.target.name] = event.target.value
+    this.setState({ login })
   }
 
   handleSubmit(event){
     event.preventDefault()
-    this.Auth.login(this.state.email, this.state.password)
-    .then(res =>{
-      this.props.history.replace('/welcome')
-    })
-    .catch(err =>{ alert(err) })
+    Auth.login(this.state.email, this.state.password)
+      .then (successUser => {
+        console.log("Login Success", successUser);
+        this.setState({loginSuccess: true})
+      })
+      .catch(err =>{ alert(err) })
   }
 
   render() {
     return (
       <div className="center">
-        <h2>Login</h2>
+        <h1>
+          Login
+        </h1>
         <br />
         <Form className="login-form">
           <FormControl
@@ -56,9 +63,15 @@ class Login extends Component {
             onClick={this.handleSubmit.bind(this)}
           />
         </Form>
+        {this.state.loginSuccess && <Redirect to="/welcome" />}
         <br />
         <div>
-          Don't have an account? <NavLink to="/signup"><a href="/signup">Sign up</a></NavLink>
+          Don't have an account?&nbsp;
+          <NavLink to="/signup">
+            <a href="/signup">
+              Sign up
+            </a>
+          </NavLink>
         </div>
       </div>
     )
