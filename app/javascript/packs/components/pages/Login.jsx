@@ -9,8 +9,8 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       loginSuccess: false
     }
   }
@@ -26,7 +26,7 @@ class Login extends Component {
     Auth.login(this.state.email, this.state.password)
       .then (successUser => {
         console.log("Login Success", successUser);
-        this.setState({loginSuccess: true})
+        this.setState({loginSuccess: true});
       })
       .catch(err =>{ alert(err) })
   }

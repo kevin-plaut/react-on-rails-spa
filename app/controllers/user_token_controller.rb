@@ -10,6 +10,8 @@ class UserTokenController < ApplicationController
   def authenticate
     unless entity.present? && entity.authenticate(auth_params[:password])
       raise Knock.not_found_exception_class
+    else
+      entity.update!(last_login: Time.now)
     end
   end
 

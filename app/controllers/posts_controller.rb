@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user, except: [ :index, :create ]
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def index
     posts = Post.all
-    render json: posts
+    render json: posts, status: 200
   end
 
   def create
