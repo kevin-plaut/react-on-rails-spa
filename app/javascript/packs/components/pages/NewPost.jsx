@@ -20,15 +20,15 @@ class NewPost extends Component {
     }
   }
 
-  handleChange(event){
+  handleChange(event) {
     let post = this.state.new_post
     post[event.target.name] = event.target.value
     this.setState({ new_post: post })
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault()
-    Post.createPost(this.state.new_post)
+    Post.createPost(Auth.getToken(), this.state.new_post)
       .then (successPost => {
         console.log("Post Success", successPost);
         this.setState({createSuccess: true})

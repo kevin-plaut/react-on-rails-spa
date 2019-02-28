@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: :show
+  before_action :authenticate_user, only: [:index, :current, :show, :update, :destroy]
+  before_action :authorize_as_admin, only: [:index, :destroy]
+  before_action :authorize_update, only: [:current, :show, :update]
+
+  def index
+    users = User.all
+    render json: users, status: 200
+  end
 
   def show
     user = User.find params[:id]
@@ -15,14 +22,37 @@ class UsersController < ApplicationController
         jwt: token
       }
       render json: payload, status: 201
+      user.update!(last_login: Time.now)
     else
       render json: {errors: user.errors}, status: 422
     end
   end
 
-   private
+  def update
+    user = User.find(params[:id])
+    if user.update(user_params)
+      render json: user, status: 200
+    end
+  end
 
-   def user_params
-     params.require(:user).permit(:email, :name, :password, :password_confirmation)
-   end
+  def destroy
+    user = User.find(params[:id])
+    if user.destroy
+      render json: { msg: 'User has been deleted.' }, status: 200
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :last_login)
+  end
+
+  def authorize_as_admin
+    render json: {}, status: 401 unless current_user && current_user.is_admin?
+  end
+
+  def authorize_update
+    render json: {}, status: 401 unless current_user && current_user.can_modify_user?(params[:id])
+  end
 end
