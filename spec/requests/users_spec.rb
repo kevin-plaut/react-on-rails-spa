@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   describe "GET /users/:id" do
-    let(:user){ User.create(name: 'Bob', email: 'bob@example.com', password: 'secret', password_confirmation: 'secret')}
+    let(:user){ User.create(name: 'Bob', email: 'bob@example.com', password: 'secretpassword', password_confirmation: 'secretpassword')}
     let(:auth_header) do
       token = Knock::AuthToken.new(payload: {sub: user.id}).token
       {
@@ -15,8 +15,8 @@ RSpec.describe "Users", type: :request do
         user: {
           name: 'Jill',
           email: 'jill@example.com',
-          password: 'secret',
-          password_confirmation: 'secret'
+          password: 'secretpassword',
+          password_confirmation: 'secretpassword'
         }
       }
 
@@ -32,8 +32,8 @@ RSpec.describe "Users", type: :request do
         user: {
           name: 'Jill',
           email: 'jill@example.com',
-          password: 'secret',
-          password_confirmation: 'wrong password'
+          password: 'secretpassword',
+          password_confirmation: 'wrongpassword'
         }
       }
 
