@@ -18,18 +18,18 @@ class App extends Component {
     }
   }
 
-	render () {
-		return (
+  render () {
+    return (
       <div>
-				<Header />
-				<br />
-				<br />
-				<br />
+        <Header />
+        <br />
+        <br />
+        <br />
         <br />
         <Switch>
           <Route exact path="/" component={Home} />
-					<Route exact path="/signup" component={SignUp} />
-					<Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/about" component={About} />
           <Route exact path="/newpost" component={NewPost} />
@@ -37,7 +37,7 @@ class App extends Component {
         </Switch>
         <br />
         <br />
-				<Footer />
+        <Footer />
       </div>
     )
   }
