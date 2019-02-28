@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, NavLink } from 'react-router-dom'
 import { Table, Col, Row, FormControl, Form } from 'react-bootstrap'
-import { createUser } from '../../api'
 import AuthService from '../../services/AuthService'
 
 const Auth = new AuthService()
@@ -15,18 +14,19 @@ class SignUp extends Component {
         email: "",
         password: "",
         password_confirmation: "",
+        last_login: ""
       },
       createSuccess: false
     }
   }
 
-  handleChange(event){
+  handleChange(event) {
     let { user } = this.state
     user[event.target.name] = event.target.value
     this.setState({user: user})
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault()
     Auth.signup(this.state.user)
       .then (successUser => {
@@ -61,7 +61,7 @@ class SignUp extends Component {
             className="signup-form-control"
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Password (min 8 characters)"
             onChange={this.handleChange.bind(this)}
           />
           <FormControl

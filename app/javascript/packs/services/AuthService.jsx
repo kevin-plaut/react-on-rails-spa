@@ -5,6 +5,7 @@ export default class AuthService {
     this.domain = domain || 'http://localhost:3000'
     this.fetch = this.fetch.bind(this)
     this.login = this.login.bind(this)
+    this.getToken = this.getToken.bind(this)
     this.getUserId = this.getUserId.bind(this)
   }
 
@@ -19,7 +20,7 @@ export default class AuthService {
       })
     }).then(res => {
       console.log("Response from authService.login:", res);
-      this.setToken(res.jwt)
+      this.setToken(res.jwt);
       return Promise.resolve(res);
     })
   }
@@ -32,13 +33,13 @@ export default class AuthService {
       })
     }).then(res => {
       console.log("Response from authService.signup:", res);
-      this.setToken(res.jwt)
+      this.setToken(res.jwt);
       return Promise.resolve(res);
     })
   }
 
   loggedIn() {
-    const token = this.getToken()
+    const token = this.getToken();
     return !!token && !this.isTokenExpired(token)
   }
 
@@ -77,11 +78,11 @@ export default class AuthService {
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
-    }
+    };
 
     if(this.loggedIn()) {
       headers['Authorization'] = 'Bearer ' + this.getToken()
-    }
+    };
 
     return fetch(url, {
       headers,
@@ -94,7 +95,7 @@ export default class AuthService {
     .then(response => {
       console.log("2. response to json: complete");
       return response.json()
-    })
+    });
   }
 
   _checkStatus(response) {
