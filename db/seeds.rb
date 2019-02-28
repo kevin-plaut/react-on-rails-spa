@@ -2,23 +2,45 @@ user_attributes = [
   {
     name: 'Chief',
     email: 'chief@dogs.com',
-    password: 'chief',
-    password_confirmation: 'chief'
+    password: 'chiefpassword',
+    password_confirmation: 'chiefpassword',
+    role: 'admin'
   },
   {
     name: 'Dakota',
     email: 'dakota@dogs.com',
-    password: 'dakota',
-    password_confirmation: 'dakota'
+    password: 'dakotapassword',
+    password_confirmation: 'dakotapassword',
+    role: 'user'
   },
   {
     name: 'Chester',
     email: 'chester@dogs.com',
-    password: 'chester',
-    password_confirmation: 'chester'
+    password: 'chesterpassword',
+    password_confirmation: 'chesterpassword',
+    role: 'user'
   }
 ]
 
 user_attributes.each do |attributes|
   User.create(attributes)
+end
+
+post_attributes = [
+  {
+    post: "It's been a ruff day",
+    user_id: 1
+  },
+  {
+    post: "Same here, it's been a hard day's night and I've been working like a dog!",
+    user_id: 2
+  },
+  {
+  post: "Squirrel!",
+  user_id: 3
+},
+]
+
+post_attributes.each do |attributes|
+  Post.create(attributes)
 end

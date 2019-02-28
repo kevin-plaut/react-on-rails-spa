@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import { Table, Col, Row, ListGroup, ListGroupItem } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
+import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
 
 const Auth = new AuthService()
+const Post = new PostService()
 const BASE = 'http://localhost:3000'
 
 class Posts extends Component {
@@ -15,15 +17,11 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-  fetch(BASE + '/posts')
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      this.setState({ posts: data });
-      console.log("state", this.state.posts)
-    })
-    .catch(error => console.log(error))
+    Post.getPosts(Auth.getToken())
+      .then(data => {
+        this.setState({ posts: data });
+      })
+      .catch(error => console.log(error))
   }
 
   render() {

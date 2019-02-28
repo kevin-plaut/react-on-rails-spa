@@ -5,8 +5,8 @@ RSpec.describe User, type: :model do
       user = User.create(
         name: 'Bob',
         email: 'bob@example.com',
-        password: 'secret',
-        password_confirmation: 'secret'
+        password: 'secretpassword',
+        password_confirmation: 'secretpassword'
       )
       expect(user.save).to be true
       expect(user.authenticate('not-secret')).to be false
@@ -16,8 +16,8 @@ RSpec.describe User, type: :model do
     user = User.create(
       name: 'Jill',
       email: 'jill@example.com',
-      password: 'secret',
-      password_confirmation: 'something else'
+      password: 'secretpassword',
+      password_confirmation: 'wrongpassword'
     )
     expect(user.save).to be false
   end
@@ -26,8 +26,8 @@ RSpec.describe User, type: :model do
     user = User.create(
       name: 'Jill',
       email: 'jill@example.com',
-      password: 'secret',
-      password_confirmation: 'secret'
+      password: 'secretpassword',
+      password_confirmation: 'secretpassword'
     )
     expect(user.save).to be true
   end
