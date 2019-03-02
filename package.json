@@ -269,7 +269,7 @@
     "http-errors": "1.6.3",
     "http-parser-js": "0.5.0",
     "http-proxy": "1.17.0",
-    "http-proxy-middleware": "0.17.4",
+    "http-proxy-middleware": "0.19.1",
     "http-signature": "1.2.0",
     "https-browserify": "1.0.0",
     "icss-replace-symbols": "1.1.0",
@@ -657,5 +657,24 @@
   "engines": {
     "node": "11.10.0",
     "npm": "6.7.0"
-  }
+  },
+  "description": "A pretty awesome SPA",
+  "version": "1.0.0",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiefDakota/react-on-rails-spa.git"
+  },
+  "keywords": [],
+  "author": "https://github.com/ChiefDakota",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiefDakota/react-on-rails-spa/issues"
+  },
+  "homepage": "https://github.com/ChiefDakota/react-on-rails-spa#readme"
 }
