@@ -6,7 +6,6 @@ import withAuth from '../../services/withAuth'
 
 const Auth = new AuthService()
 const Post = new PostService()
-const BASE = 'http://localhost:3000'
 
 class Posts extends Component {
   constructor() {
