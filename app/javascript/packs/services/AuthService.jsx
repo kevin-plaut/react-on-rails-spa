@@ -1,8 +1,8 @@
-import decode from 'jwt-decode';
+import decode from 'jwt-decode'
 
 export default class AuthService {
   constructor(domain) {
-    this.domain = domain || 'http://localhost:5000'
+    this.domain = domain || process.env.BASE_URL
     this.fetch = this.fetch.bind(this)
     this.login = this.login.bind(this)
     this.getToken = this.getToken.bind(this)
