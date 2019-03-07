@@ -4,14 +4,20 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
+# Ignore .env
+.env
+
+# Ignore .DS_Store
+.DS_Store
+
+# Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
+# Ignore the default SQLite database
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log/*
 /tmp/*
 !/log/.keep
@@ -21,16 +27,18 @@
 /storage/*
 !/storage/.keep
 
+# Ignore Node packages and errors
 /node_modules
 /yarn-error.log
-
-/public/assets
-.byebug_history
-
-# Ignore master key for decrypting credentials and more.
-/config/master.key
-/public/packs
-/public/packs-test
-/node_modules
 yarn-debug.log*
 .yarn-integrity
+.byebug_history
+
+# Ignore public files
+/public/assets
+/public/packs
+/public/packs-test
+
+# Ignore master key and credentials
+/config/master.key
+/config/credentials.yml.enc
