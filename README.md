@@ -1,59 +1,112 @@
 # <img src="https://chiefdakota.github.io/react-on-rails-spa/app/javascript/packs/assets/images/yay-fox.gif" alt="Yay Fox gif" /> React-on-Rails SPA <img src="https://chiefdakota.github.io/react-on-rails-spa/app/javascript/packs/assets/images/yay-fox.gif" alt="Yay Fox gif" />
 
 ## Setup
-_We recommend using a Ruby version manager such as_ [`rbenv`](https://github.com/rbenv/rbenv) _and a Node version manager such as_ [`nvm`](https://github.com/creationix/nvm)
 
-In Terminal `cd` into the project directory (if not already there) and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to setup the app:
-```xml
-# Install Ruby on Rails and Gems
-rbenv install 2.5.0
-rbenv local 2.5.0
-gem install bundler
-bundle install
+_We recommend using the following:_<br />
+&nbsp; &nbsp; [`rbenv`](https://github.com/rbenv/rbenv) _- Ruby version manager_<br />
+&nbsp; &nbsp; [`nvm`](https://github.com/creationix/nvm) _-Node version manager_<br />
+&nbsp; &nbsp; [`Homebrew`](https://brew.sh/) _- package manager_
 
-# Generate Rails Master Key
-EDITOR=vim rails credentials:edit
-# entering the above command should open a Vim editor
-# save and exit by entering `:wq` and hitting [RETURN/ENTER]
-# after saving the Rails Master Key files will be automatically generated in the /config folder
+* `cd` into the project directory
 
-# Install Node, Yarn, and Packages
-nvm install 11.10.0
-yarn install
+* Install Ruby v2.5.0 and gems
+    ```xml
+    rbenv install 2.5.0
+    rbenv local 2.5.0
+    gem install bundler
+    bundle install
+    ```
 
-# Create Database
-rails db:create
-rails db:migrate
-rails db:seed
-```
+* Generate a Rails Master Key
+    * run the following to generate the Rails Master Key and files, and<br />open the new `/config/credentials.yml.enc` file in Vim
+
+        ```xml
+        EDITOR=vim rails credentials:edit
+        ```
+
+    * the file should show your new `secret_key_base`
+
+    * type `:wq` and press `[RETURN/ENTER]` to save and exit
+
+* Create an `.env` file
+    * create a duplicate of `.env.example` and name it `.env`
+
+    * replace the `RAILS_MASTER_KEY` value with your new Master Key (found in `/config/master.key`)
+
+    * update the `BASE_URL` value (if required, depending on your setup)
+
+* Install Node v11.10.0, Yarn, and packages
+    ```xml
+    nvm install 11.10.0
+    brew install yarn --ignore-dependencies
+    yarn install
+    ```
+
+* Create databases
+    ```xml
+    rails db:create
+    rails db:migrate
+    rails db:seed
+    ```
 
 ## Running Locally
-### Running with [foreman](https://github.com/ddollar/foreman)
-_Ruby users should take care not to install foreman in their project's Gemfile_
 
-In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start a [Rails](https://github.com/rails/rails) server and [Webpacker](https://github.com/rails/webpacker):
-```xml
-foreman start -f Procfile.dev
-```
+### Running using [foreman](https://github.com/ddollar/foreman)
+
+_**PLEASE NOTE:** per_ `foreman`_'s docs we recommend installing the gem in your home or user directory_
+
+* `cd` into your home or user directory
+
+* Install `foreman`
+
+    ```xml
+    gem install foreman
+    ```
+
+* `cd` back into the project directory
+
+* Start `foreman`, which runs the `Procfile.dev` and will start a [Rails](https://github.com/rails/rails) server and [Webpacker](https://github.com/rails/webpacker)
+
+    ```xml
+    foreman start -f Procfile.dev
+    ```
 
 ### Running Rails and Webpacker separately
-In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start a [Rails](https://github.com/rails/rails) server:
-```xml
-bundle exec rails server -p 5000
-```
 
-In a separate Terminal window/tab/pane, `cd` into the project directory (if not already there), and<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run the following to start [Webpacker](https://github.com/rails/webpacker):
-```xml
-bin/webpack-dev-server
-```
+* Open a new window/tab/pane in Terminal
+
+    * `cd` into the project directory
+
+    * Start a [Rails](https://github.com/rails/rails) server
+
+        ```xml
+        bundle exec rails server -p 5000
+        ```
+
+* Open another new window/tab/pane in Terminal
+
+    * `cd` into the project directory
+
+    * Start [Webpacker](https://github.com/rails/webpacker)
+
+        ```xml
+        bin/webpack-dev-server
+        ```
 
 ### Troubleshooting
-If getting non-deterministic issues when starting the servers, trying running the following:
-```xml
-yarn upgrade
-```
+
+* Upgrade Yarn if getting non-deterministic issues when installing, starting the servers, compiling,...
+
+    ```xml
+    yarn upgrade
+    ```
 
 ## :star: Collaborators :star:
-[ChiefDakota](https://github.com/ChiefDakota)
-<br />
+
+[ChiefDakota](https://github.com/ChiefDakota)<br />
 [DenisePillette](https://github.com/DenisePillette)
+
+## License
+
+React-on-Rails SPA is licensed under the MIT license.<br />
+See `LICENSE` for the full license text.
