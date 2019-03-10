@@ -17,6 +17,13 @@ _We recommend using the following:_<br />
     bundle install
     ```
 
+* Install Node v11.10.0, Yarn, and packages
+    ```xml
+    nvm install 11.10.0
+    brew install yarn --ignore-dependencies
+    yarn install
+    ```
+
 * Generate a Rails Master Key
     * run the following to generate the Rails Master Key and files, and<br />open the new `/config/credentials.yml.enc` file in Vim
 
@@ -34,13 +41,6 @@ _We recommend using the following:_<br />
     * replace the `RAILS_MASTER_KEY` value with your new Master Key (found in `/config/master.key`)
 
     * update the `BASE_URL` value (if required, depending on your setup)
-
-* Install Node v11.10.0, Yarn, and packages
-    ```xml
-    nvm install 11.10.0
-    brew install yarn --ignore-dependencies
-    yarn install
-    ```
 
 * Create databases
     ```xml
@@ -108,5 +108,5 @@ _**PLEASE NOTE:** per_ `foreman`_'s docs we recommend installing the gem in your
 
 ## License
 
-React-on-Rails SPA is licensed under the MIT license.<br />
+React-on-Rails SPA is licensed under the [MIT License](https://opensource.org/licenses/MIT).<br />
 See `LICENSE` for the full license text.
