@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+
 import withAuth from '../../services/withAuth'
 import puppies3 from '../../assets/images/puppies-park-3.png'
 
@@ -11,9 +13,18 @@ class Welcome extends Component {
             Welcome
           </h1>
           <br />
-          <h3>
+          <h4>
             Thanks for logging in!
-          </h3>
+          </h4>
+          <h6 className="text-muted">
+            click&nbsp;
+            <NavLink to="/newpost">
+              <a href="/newpost">
+                HERE
+              </a>
+            </NavLink>
+            &nbsp;to create a post
+          </h6>
           <br />
           <img className="image" src={puppies3} alt="Puppies at the park (3)" />
         </div>

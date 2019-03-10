@@ -33,11 +33,11 @@ class Posts extends Component {
               Posts
             </h1>
             <Row className="post-row">
-              <h3 className="posts-subtitle">
+              <h4 className="posts-subtitle">
                 <small className="text-muted">
                   All the posts!
                 </small>
-              </h3>
+              </h4>
               <Col>
                 <ListGroup variant="flush">
                   <ListGroupItem />
