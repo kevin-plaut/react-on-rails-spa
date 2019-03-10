@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user
+  before_action :authorize_update, only: [:update, :destroy]
 
   def index
     posts = Post.all
@@ -18,9 +19,29 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    post = Post.find(params[:id])
+    if post.update(post_params)
+      render json: user, status: 200
+    end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    if post.destroy
+      post.deleted_at = Time.now
+      render json: { msg: "Post has been deleted." }, status: 200
+    end
+  end
+
   private
 
   def post_params
     params.require(:new_post).permit(:user_id, :post)
+  end
+
+  def authorize_update
+    post = Post.find(params[:id])
+    render json: { msg: "Invalid user." }, status: 401 unless current_user && (current_user.id.to_s == post.user_id.to_s)
   end
 end
