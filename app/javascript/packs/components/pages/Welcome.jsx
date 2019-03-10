@@ -16,15 +16,15 @@ class Welcome extends Component {
           <h4>
             Thanks for logging in!
           </h4>
-          <h6 className="text-muted">
+          <div className="text-muted">
             click&nbsp;
             <NavLink to="/newpost">
               <a href="/newpost">
                 HERE
               </a>
             </NavLink>
-            &nbsp;to create a post
-          </h6>
+            &nbsp;to create a Post
+          </div>
           <br />
           <img className="image" src={puppies3} alt="Puppies at the park (3)" />
         </div>

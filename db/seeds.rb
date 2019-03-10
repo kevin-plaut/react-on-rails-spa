@@ -28,17 +28,17 @@ end
 
 post_attributes = [
   {
-    post: "It's been a ruff day",
+    post: "It's been a 'ruff' day",
     user_id: 1
   },
   {
-    post: "Same here, it's been a hard day's night and I've been working like a dog!",
+    post: "Squirrel!",
     user_id: 2
   },
   {
-  post: "Squirrel!",
-  user_id: 3
-},
+    post: "Thanks 'fur' the heads-up!",
+    user_id: 3
+  },
 ]
 
 post_attributes.each do |attributes|
