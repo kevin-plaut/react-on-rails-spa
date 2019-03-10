@@ -108,5 +108,5 @@ _**PLEASE NOTE:** per_ `foreman`_'s docs we recommend installing the gem in your
 
 ## License
 
-React-on-Rails SPA is licensed under the MIT license.<br />
+React-on-Rails SPA is licensed under the [MIT License](https://opensource.org/licenses/MIT).<br />
 See `LICENSE` for the full license text.

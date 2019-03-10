@@ -41,7 +41,7 @@ class Posts extends Component {
               <Col>
                 <ListGroup variant="flush">
                   <ListGroupItem />
-                  {this.state.posts.reverse().map(((post, index) =>
+                  {this.state.posts.map((post, index) =>
                       <ListGroupItem key={`${post.post}${index}`}>
                         <div>
                           <div>
@@ -49,7 +49,7 @@ class Posts extends Component {
                           </div>
                         </div>
                       </ListGroupItem>
-                    ))}
+                    ).reverse()}
                   <ListGroupItem />
                 </ListGroup>
               </Col>
