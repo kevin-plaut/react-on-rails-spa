@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     render json: posts, status: 200
   end
 
+  def show
+    post = Post.find params[:id]
+    render json: post, status: 200
+  end
+
   def create
     post = Post.new(post_params)
     if post.save
@@ -22,7 +27,7 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     if post.update(post_params)
-      render json: user, status: 200
+      render json: post, status: 200
     end
   end
 
@@ -42,6 +47,6 @@ class PostsController < ApplicationController
 
   def authorize_update
     post = Post.find(params[:id])
-    render json: { msg: "Invalid user." }, status: 401 unless current_user && (current_user.id.to_s == post.user_id.to_s)
+    render json: { msg: "Invalid user." }, status: 401 unless current_user && (current_user.is_admin? || current_user.id.to_s == post.user_id.to_s)
   end
 end
