@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:index, :current, :show, :update, :destroy]
+  before_action :authenticate_user, only: [:index, :show, :update, :destroy]
   before_action :authorize_as_admin, only: [:index, :destroy]
   before_action :authorize_update, only: [:current, :show, :update]
 
@@ -38,7 +38,8 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     if user.destroy
-      render json: { msg: 'User has been deleted.' }, status: 200
+      user.deleted_at = Time.now
+      render json: { msg: "User has been deleted." }, status: 200
     end
   end
 
@@ -49,10 +50,10 @@ class UsersController < ApplicationController
   end
 
   def authorize_as_admin
-    render json: {}, status: 401 unless current_user && current_user.is_admin?
+    render json: { msg: "Invalid user." }, status: 401 unless current_user && current_user.is_admin?
   end
 
   def authorize_update
-    render json: {}, status: 401 unless current_user && current_user.can_modify_user?(params[:id])
+    render json: { msg: "Invalid user." }, status: 401 unless current_user && current_user.can_modify_user?(params[:id])
   end
 end
