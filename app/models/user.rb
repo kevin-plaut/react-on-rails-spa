@@ -1,17 +1,17 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   has_secure_password
-  has_many :posts
-
-  validates_length_of :password, maximum: 72, minimum: 8, allow_nil: true, allow_blank: false
-  validates_confirmation_of :password, allow_nil: true, allow_blank: false
+  has_many :posts, dependent: :destroy
 
   before_validation {
     (self.email = self.email.to_s.downcase)
   }
 
-  validates_presence_of   :email
   validates_presence_of   :name
-  validates_uniqueness_of :email
+  validates_presence_of   :email
+  validates_uniqueness_of :email, conditions: -> { with_deleted }
+  validates_length_of :password, maximum: 72, minimum: 8, allow_nil: true, allow_blank: false
+  validates_confirmation_of :password, allow_nil: true, allow_blank: false
 
   def can_modify_user?(user_id)
     role == 'admin' || id.to_s == user_id.to_s
