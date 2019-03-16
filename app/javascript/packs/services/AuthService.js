@@ -74,6 +74,11 @@ export default class AuthService {
     return token.sub
   }
 
+  getUserName() {
+    const token = decode(this.getToken());
+    return token.name
+  }
+
   fetch(url, options) {
     const headers = {
       'Accept': 'application/json',

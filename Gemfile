@@ -12,6 +12,7 @@ gem "jbuilder"
 gem "knock"
 gem "paranoia"
 gem "puma"
+gem "rb-readline"
 gem "sass-rails"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier"

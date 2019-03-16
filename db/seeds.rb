@@ -28,15 +28,18 @@ end
 
 post_attributes = [
   {
-    post: "It's been a 'ruff' day",
+    image_url: "https://4dogday.files.wordpress.com/2013/08/tired-dog.jpg",
+    comment: "It's been a 'ruff' day",
     user_id: 1
   },
   {
-    post: "Squirrel!",
+    image_url: "https://media.mnn.com/assets/images/2014/12/gray-squirrel-uc-berkeley.jpg.653x0_q80_crop-smart.jpg",
+    comment: "Squirrel!",
     user_id: 2
   },
   {
-    post: "Thanks 'fur' the heads-up!",
+    image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNGmwK3Qoi4CiBvfB7giQopJwd01K2QoGlIZ9eLSR2nElTXRoo",
+    comment: "Thanks 'fur' the heads-up!",
     user_id: 3
   },
 ]
