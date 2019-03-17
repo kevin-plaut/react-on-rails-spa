@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
   acts_as_paranoid
-  belongs_to :user
-  validates :user_id, :post, presence: true
+  belongs_to :user, foreign_key: "user_id"
+  validates :user_id, :image_url, :comment, presence: true
 end
