@@ -44,7 +44,7 @@ class Posts extends Component {
                             {post.comment}
                           </Card.Title>
                           <Card.Text>
-                            - {Auth.getUserName()}
+                            - {post.user_id}
                           </Card.Text>
                         </Card.Body>
                       </Card>
