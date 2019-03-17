@@ -13,7 +13,7 @@ export default class PostService extends AuthService {
     })
   }
 
-  createPost(token, new_post) {
+  createPost(token, post) {
     return this.fetch(`${this.domain}/posts`, {
       headers:{
           'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export default class PostService extends AuthService {
       },
       method: 'POST',
       body: JSON.stringify({
-        new_post: new_post
+        post: post
       })
     }).then((res) => {
       return Promise.resolve(res)

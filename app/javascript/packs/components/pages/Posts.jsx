@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Table, Col, Row, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Container, Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
@@ -27,34 +27,33 @@ class Posts extends Component {
     return (
       <div>
         <div className="center">
-          <Table>
             <br />
             <h1>
               Posts
             </h1>
-            <Row className="post-row">
-              <h4 className="posts-subtitle">
-                <small className="text-muted">
-                  All the posts!
-                </small>
-              </h4>
-              <Col>
-                <ListGroup variant="flush">
-                  <ListGroupItem />
-                  {this.state.posts.map((post, index) =>
-                      <ListGroupItem key={`${post.post}${index}`}>
-                        <div>
-                          <div>
-                            {post.post}
-                          </div>
-                        </div>
-                      </ListGroupItem>
-                    ).reverse()}
-                  <ListGroupItem />
-                </ListGroup>
-              </Col>
-            </Row>
-          </Table>
+            <br />
+            <Container>
+              <Row>
+                {this.state.posts.map((post, index) =>
+                  <div key={`${post.id}${index}`}>
+                    <Col>
+                      <Card style={{ width: '20rem' }}>
+                        <Card.Img variant="top" src={post.image_url} />
+                        <Card.Body>
+                          <Card.Title>
+                            {post.comment}
+                          </Card.Title>
+                          <Card.Text>
+                            - {post.user_id}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                    <br />
+                  </div>
+                ).reverse()}
+              </Row>
+            </Container>
         </div>
       </div>
     )

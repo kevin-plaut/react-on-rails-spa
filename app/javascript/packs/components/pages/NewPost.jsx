@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Table, Row, Form, Col, FormControl } from 'react-bootstrap'
+import { Card, Form, FormControl, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
@@ -12,8 +12,8 @@ class NewPost extends Component {
   constructor() {
     super()
     this.state = {
-      new_post: {
-        post: "",
+      post: {
+        comment: "",
         user_id: Auth.getUserId()
       },
       createSuccess: false,
@@ -21,14 +21,14 @@ class NewPost extends Component {
   }
 
   handleChange(event) {
-    let post = this.state.new_post
+    let post = this.state.post
     post[event.target.name] = event.target.value
-    this.setState({ new_post: post })
+    this.setState({ post: post })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    Post.createPost(Auth.getToken(), this.state.new_post)
+    Post.createPost(Auth.getToken(), this.state.post)
       .then (successPost => {
         console.log("Post Success", successPost);
         this.setState({createSuccess: true})
@@ -38,38 +38,48 @@ class NewPost extends Component {
 
   render() {
     return (
-      <div>
-        <div className="center">
-          <h1>
-            Create a Post
-          </h1>
-          <br />
-          <Table>
-            <Row>
-              <Form className="post-form">
-                <Col>
-                  <FormControl
-                    type="text"
-                    name="post"
-                    placeholder=""
-                    onChange={this.handleChange.bind(this)}
-                  />
-                </Col>
-                  <br/>
-                <Col>
-                  <FormControl
-                    type="submit"
-                    id="submit"
-                    className="submit"
-                    onClick={this.handleSubmit.bind(this)}
-                  />
-                  {this.state.createSuccess && <Redirect to="/viewposts" />}
-                </Col>
-              </Form>
-            </Row>
-          </Table>
-          <br />
-        </div>
+      <div className="center">
+        <h1>
+          Post an Image
+        </h1>
+        <br />
+        <Card className="center" style={{ width: '35rem' }}>
+          <Form className="post-form">
+            <Form.Group>
+              <Form.Label>
+                <b>
+                  Image URL
+                </b>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="image_url"
+                placeholder="ex: https://sample-videos.com/img/Sample-jpg-image-500kb.jpg"
+                onChange={this.handleChange.bind(this)}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>
+                <b>
+                  Comment
+                </b>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="comment"
+                placeholder="ex: This is a picture of my human!"
+                onChange={this.handleChange.bind(this)}
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit"  className="center"                 onClick={this.handleSubmit.bind(this)}>
+              Submit
+            </Button>
+            {this.state.createSuccess && <Redirect to="/viewposts" />}
+          </Form>
+        </Card>
+        <br />
       </div>
     )
   }

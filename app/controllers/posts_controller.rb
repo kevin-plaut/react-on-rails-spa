@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     post = Post.find params[:id]
+    user = post.user :include => [:name]
     render json: post, status: 200
   end
 
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:new_post).permit(:user_id, :post)
+    params.require(:post).permit(:user_id, :image_url, :comment)
   end
 
   def authorize_update

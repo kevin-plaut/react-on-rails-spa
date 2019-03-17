@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 import withAuth from '../../services/withAuth'
 import puppies3 from '../../assets/images/puppies-park-3.png'
@@ -13,18 +14,14 @@ class Welcome extends Component {
             Welcome
           </h1>
           <br />
-          <h4>
-            Thanks for logging in!
-          </h4>
-          <div className="text-muted">
-            click&nbsp;
-            <NavLink to="/newpost">
-              <a href="/newpost">
-                HERE
-              </a>
-            </NavLink>
-            &nbsp;to create a Post
-          </div>
+          <NavLink to="/newpost">
+            <a href="/newpost">
+              <Button variant="outline-secondary">
+                CLICK HERE TO CREATE A POST
+              </Button>
+            </a>
+          </NavLink>
+          <br />
           <br />
           <img className="image" src={puppies3} alt="Puppies at the park (3)" />
         </div>
