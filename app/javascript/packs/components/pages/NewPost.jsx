@@ -40,7 +40,7 @@ class NewPost extends Component {
     return (
       <div className="center">
         <h1>
-          Post an Image
+          New Post
         </h1>
         <br />
         <Card className="new-post-card">
