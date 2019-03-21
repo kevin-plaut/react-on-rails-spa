@@ -43,8 +43,8 @@ class NewPost extends Component {
           Post an Image
         </h1>
         <br />
-        <Card className="center" style={{ width: '35rem' }}>
-          <Form className="post-form">
+        <Card className="new-post-card">
+          <Form className="new-post-form">
             <Form.Group>
               <Form.Label>
                 <b>
@@ -58,7 +58,6 @@ class NewPost extends Component {
                 onChange={this.handleChange.bind(this)}
               />
             </Form.Group>
-
             <Form.Group>
               <Form.Label>
                 <b>
@@ -68,12 +67,11 @@ class NewPost extends Component {
               <Form.Control
                 type="text"
                 name="comment"
-                placeholder="ex: This is a picture of my human!"
+                placeholder="ex: This is a picture of my human! (must be 140 characters or less)"
                 onChange={this.handleChange.bind(this)}
               />
             </Form.Group>
-
-            <Button variant="primary" type="submit"  className="center"                 onClick={this.handleSubmit.bind(this)}>
+            <Button variant="dark" type="submit"  className="center"                 onClick={this.handleSubmit.bind(this)}>
               Submit
             </Button>
             {this.state.createSuccess && <Redirect to="/viewposts" />}

@@ -37,7 +37,7 @@ class Home extends Component {
           </div>
         }
         <br />
-        <img className="image" src={puppies1} alt="Puppies at the park (1)"/>
+        <img className="home-image" src={puppies1} alt="Puppies at the park (1)" />
       </div>
     )
   }
