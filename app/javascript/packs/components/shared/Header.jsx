@@ -16,7 +16,7 @@ class Header extends Component {
     return (
       <div>
         <Navbar collapseOnSelect bg="light" variant="light" expand="lg" fixed="top">
-          <NavLink to="/">
+          <NavLink exact to="/"  componentClass="span">
             <Navbar.Brand href="/">
               React-on-Rails SPA
             </Navbar.Brand>
@@ -24,53 +24,53 @@ class Header extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <NavLink to="/">
+              <NavLink exact to="/">
                 <Nav.Link href="/">
                   Home
                 </Nav.Link>
               </NavLink>
               {!Auth.loggedIn() &&
-                <NavLink to="/signup">
+                <NavLink exact to="/signup">
                   <Nav.Link href="/signup">
                     Sign Up
                   </Nav.Link>
                 </NavLink>
               }
               {!Auth.loggedIn() &&
-                <NavLink to="/login">
+                <NavLink exact to="/login">
                   <Nav.Link href="/login">
                     Login
                   </Nav.Link>
                 </NavLink>
               }
               {Auth.loggedIn() &&
-                <NavLink to="/welcome">
+                <NavLink exact to="/welcome">
                   <Nav.Link href="/welcome">
                     Welcome
                   </Nav.Link>
                 </NavLink>
               }
               {Auth.loggedIn() &&
-                <NavLink to="/newpost">
+                <NavLink exact to="/newpost">
                   <Nav.Link href="/newpost">
                     New Post
                   </Nav.Link>
                 </NavLink>
               }
               {Auth.loggedIn() &&
-                <NavLink to="/viewposts">
+                <NavLink exact to="/viewposts">
                   <Nav.Link href="/viewposts">
                     Posts
                   </Nav.Link>
                 </NavLink>
               }
-              <NavLink to="/about">
+              <NavLink exact to="/about">
                 <Nav.Link href="/about">
                   About
                 </Nav.Link>
               </NavLink>
               {Auth.loggedIn() &&
-                <NavLink to="/login">
+                <NavLink exact to="/login">
                   <Nav.Link href="/login" onClick={this.handleLogout.bind(this)}>
                     Logout
                   </Nav.Link>

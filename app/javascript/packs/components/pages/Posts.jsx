@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
-import { Container, Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { CardDeck, Card } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
+import UserService from '../../services/UserService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
 
 const Auth = new AuthService()
+const User = new UserService()
 const Post = new PostService()
+
+const Timestamp = require('react-timestamp');
 
 class Posts extends Component {
   constructor() {
@@ -17,8 +21,21 @@ class Posts extends Component {
 
   componentDidMount() {
     Post.getPosts(Auth.getToken())
-      .then(data => {
-        this.setState({ posts: data });
+      .then(posts => {
+        const promises = posts.map(post => {
+          const { user_id } = post
+          return User
+            .getUserName(Auth.getToken(), user_id)
+            .then(({ user_name }) => ({
+              ...post,
+              user_name,
+            }))
+        })
+        return Promise.all(promises)
+      })
+      .then(posts => {
+        console.log('Posts:', posts)
+        this.setState({ posts });
       })
       .catch(error => console.log(error))
   }
@@ -27,33 +44,38 @@ class Posts extends Component {
     return (
       <div>
         <div className="center">
-            <br />
-            <h1>
-              Posts
-            </h1>
-            <br />
-            <Container>
-              <Row>
-                {this.state.posts.map((post, index) =>
-                  <div key={`${post.id}${index}`}>
-                    <Col>
-                      <Card style={{ width: '20rem' }}>
-                        <Card.Img variant="top" src={post.image_url} />
-                        <Card.Body>
-                          <Card.Title>
-                            {post.comment}
-                          </Card.Title>
-                          <Card.Text>
-                            - {post.user_id}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                    <br />
-                  </div>
-                ).reverse()}
-              </Row>
-            </Container>
+          <br />
+          <h1>
+            Posts
+          </h1>
+          <br />
+          <CardDeck className="justify-content-center">
+            {this.state.posts.map((post, index) =>
+              <div key={`${post.id}${index}`}>
+                <Card className="post-card">
+                  <Card.Img className="post-card-image" variant="top" src={post.image_url} />
+                  <Card.Body>
+                    <Card.Title>
+                      {post.comment}
+                    </Card.Title>
+                    <Card.Text>
+                      <div className="text-muted">
+                        - {post.user_name}
+                      </div>
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">
+                      Uploaded: <Timestamp time={post.created_at} autoUpdate={60} />
+                      <br />
+                      <Timestamp time={post.created_at} format='full' />
+                    </small>
+                  </Card.Footer>
+                </Card>
+                <br />
+              </div>
+            ).reverse()}
+          </CardDeck>
         </div>
       </div>
     )
