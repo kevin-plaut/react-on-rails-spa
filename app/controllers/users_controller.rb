@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:index, :show, :update, :destroy]
+  before_action :authenticate_user, only: [:index, :show, :show_name, :update, :destroy]
   before_action :authorize_as_admin, only: [:index, :destroy]
   before_action :authorize_update, only: [:show, :update]
 
@@ -11,6 +11,13 @@ class UsersController < ApplicationController
   def show
     user = User.find params[:id]
     render json: user, status: 200
+  end
+
+  def show_name
+    user_name = {
+      user_name: (User.find params[:id]).name
+    }
+    render json: user_name, status: 200
   end
 
   def create

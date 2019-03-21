@@ -61,14 +61,14 @@ class SignUp extends Component {
             className="signup-form-control"
             type="password"
             name="password"
-            placeholder="Password (min 8 characters)"
+            placeholder="Password (min. 8 characters)"
             onChange={this.handleChange.bind(this)}
           />
           <FormControl
             className="signup-form-control"
             type="password"
             name="password_confirmation"
-            placeholder="Confirm"
+            placeholder="Confirm Password"
             onChange={this.handleChange.bind(this)}
           /><br/>
           <FormControl

@@ -16,14 +16,14 @@ class Welcome extends Component {
           <br />
           <NavLink to="/newpost">
             <a href="/newpost">
-              <Button variant="outline-secondary">
+              <Button variant="dark">
                 CLICK HERE TO CREATE A POST
               </Button>
             </a>
           </NavLink>
           <br />
           <br />
-          <img className="image" src={puppies3} alt="Puppies at the park (3)" />
+          <img className="welcome-image" src={puppies3} alt="Puppies at the park (3)" />
         </div>
       </div>
     )
