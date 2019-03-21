@@ -13,7 +13,7 @@ class About extends Component {
           Fancy meeting you here!
         </h3>
         <br />
-        <img className="image" src={puppies2} alt="Puppies at the park (2)" />
+        <img className="about-image" src={puppies2} alt="Puppies at the park (2)" />
       </div>
     )
   }
