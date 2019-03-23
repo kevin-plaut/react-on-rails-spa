@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, NavLink } from 'react-router-dom'
-import { Table, Col, Row, FormControl, Form } from 'react-bootstrap'
+import { Form, FormControl, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 
 const Auth = new AuthService()
@@ -38,9 +38,9 @@ class SignUp extends Component {
   render() {
     return (
       <div className="center">
-        <h1>
+        <h2>
           Sign Up
-        </h1>
+        </h2>
         <br />
         <Form className="signup-form">
           <FormControl
@@ -71,26 +71,24 @@ class SignUp extends Component {
             placeholder="Confirm Password"
             onChange={this.handleChange.bind(this)}
           /><br/>
-          <FormControl
-            className="signup-form-control"
+          <Button
+            variant="dark"
             type="submit"
-            name="submit"
             onClick={this.handleSubmit.bind(this)}
-          />
+          >
+            Submit
+          </Button>
         </Form>
         {this.state.createSuccess && <Redirect to="/welcome" />}
-        <br />
-        <div>
+        <small className="text-muted">
           Already have an account?&nbsp;
-          <NavLink to="/login">
-            <a href="/login">
-              Login
-            </a>
+          <NavLink to="/login" as="span">
+            Login
           </NavLink>
-        </div>
+        </small>
       </div>
     )
   }
 }
 
-export default SignUp;
+export default SignUp

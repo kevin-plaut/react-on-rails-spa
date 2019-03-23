@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import UserService from '../../services/UserService'
@@ -13,7 +13,8 @@ class Welcome extends Component {
   constructor() {
     super()
     this.state = {
-      user_name: ""
+      user_name: "",
+      clickedCreatePost: false
     }
   }
 
@@ -23,34 +24,41 @@ class Welcome extends Component {
         return Promise.all(user_name.user_name)
       })
       .then(user_name => {
-        console.log('User Name:', user_name)
-        this.setState({ user_name });
+        this.setState({ user_name })
       })
       .catch(error => console.log(error))
+  }
+
+  clickCreatePost() {
+    this.setState({clickedCreatePost: true})
   }
 
   render() {
     return (
       <div>
         <div className="center">
-          <h1>
+          <h2>
             Welcome, {this.state.user_name}!
-          </h1>
+          </h2>
           <br />
-          <NavLink to="/newpost">
-            <a href="/newpost">
-              <Button variant="dark">
-                CREATE A POST
-              </Button>
-            </a>
-          </NavLink>
+          <Button
+            variant="dark"
+            type="submit"
+            onClick={this.clickCreatePost.bind(this)}
+          >
+            CREATE A POST
+          </Button>
+          {this.state.clickedCreatePost && <Redirect to="/newpost" />}
           <br />
-          <br />
-          <img className="welcome-image" src={puppies3} alt="Puppies at the park (3)" />
+          <img
+            className="welcome-image"
+            src={puppies3}
+            alt="Puppies at the park (3)"
+          />
         </div>
       </div>
     )
   }
 }
 
-export default withAuth(Welcome);
+export default withAuth(Welcome)

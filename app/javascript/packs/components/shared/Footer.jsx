@@ -5,17 +5,18 @@ class Footer extends Component {
   render() {
     return (
       <div>
-        <Navbar bg="light" variant="light" expand="lg" fixed="bottom">
+        <Navbar
+          bg="light"
+          variant="light"
+          expand="lg"
+          fixed="bottom"
+        >
           <div>
-            <span>
-              React-on-Rails SPA by&nbsp;
-            </span>
+            React-on-Rails SPA by&nbsp;
             <a href="https://github.com/ChiefDakota" target="new">
               ChiefDakota
             </a>
-            <span>
-              &nbsp;and&nbsp;
-            </span>
+            &nbsp;and&nbsp;
             <a href="https://github.com/DenisePillette" target="new">
               DenisePillette
             </a>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Card, Form, FormControl, Button } from 'react-bootstrap'
+import { Card, Form, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
@@ -30,7 +30,7 @@ class NewPost extends Component {
     event.preventDefault()
     Post.createPost(Auth.getToken(), this.state.post)
       .then (successPost => {
-        console.log("Post Success", successPost);
+        console.log("Post Success", successPost)
         this.setState({createSuccess: true})
       })
       .catch(err =>{ alert(err) })
@@ -39,9 +39,9 @@ class NewPost extends Component {
   render() {
     return (
       <div className="center">
-        <h1>
+        <h2>
           New Post
-        </h1>
+        </h2>
         <br />
         <Card className="new-post-card">
           <Form className="new-post-form">
@@ -67,11 +67,16 @@ class NewPost extends Component {
               <Form.Control
                 type="text"
                 name="comment"
-                placeholder="ex: This is a picture of my human! (must be 140 characters or less)"
+                placeholder="ex: This is a picture of my human!"
                 onChange={this.handleChange.bind(this)}
               />
             </Form.Group>
-            <Button variant="dark" type="submit"  className="center"                 onClick={this.handleSubmit.bind(this)}>
+            <Button
+              variant="dark"
+              type="submit"
+              className="center"
+              onClick={this.handleSubmit.bind(this)}
+            >
               Submit
             </Button>
             {this.state.createSuccess && <Redirect to="/viewposts" />}
@@ -83,4 +88,4 @@ class NewPost extends Component {
   }
 }
 
-export default withAuth(NewPost);
+export default withAuth(NewPost)
