@@ -9,38 +9,38 @@ class Home extends Component {
   render() {
     return (
       <div className="center">
-        <h1>
+        <h2>
           Home
-        </h1>
-        <br />
-        <h3>
+        </h2>
+        <h4>
           Thanks for stopping by!
-        </h3>
+        </h4>
         {!Auth.loggedIn() &&
-          <div className="text-muted">
+          <small className="text-muted">
             Don't have an account?&nbsp;
-            <NavLink to="/signup">
-              <a href="/signup">
-                Sign up
-              </a>
+            <NavLink to="/signup" as="span">
+              Sign up
             </NavLink>
-          </div>
+            <br />
+          </small>
         }
         {!Auth.loggedIn() &&
-          <div className="text-muted">
+          <small className="text-muted">
             Already have an account?&nbsp;
-            <NavLink to="/login">
-              <a href="/login">
-                Login
-              </a>
+            <NavLink to="/login" as="span">
+              Login
             </NavLink>
-          </div>
+            <br />
+          </small>
         }
-        <br />
-        <img className="home-image" src={puppies1} alt="Puppies at the park (1)" />
+        <img
+          className="home-image"
+          src={puppies1}
+          alt="Puppies at the park (1)"
+        />
       </div>
     )
   }
 }
 
-export default Home;
+export default Home

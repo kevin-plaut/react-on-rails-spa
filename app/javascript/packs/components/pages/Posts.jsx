@@ -9,7 +9,7 @@ const Auth = new AuthService()
 const User = new UserService()
 const Post = new PostService()
 
-const Timestamp = require('react-timestamp');
+const Timestamp = require('react-timestamp')
 
 class Posts extends Component {
   constructor() {
@@ -35,51 +35,49 @@ class Posts extends Component {
       })
       .then(posts => {
         console.log('Posts:', posts)
-        this.setState({ posts });
+        this.setState({ posts })
       })
       .catch(error => console.log(error))
   }
 
   render() {
     return (
-      <div>
-        <div className="center">
-          <br />
-          <h1>
-            Posts
-          </h1>
-          <br />
-          <CardDeck className="justify-content-center">
-            {this.state.posts.map((post, index) =>
-              <div key={`${post.id}${index}`}>
-                <Card className="post-card">
-                  <Card.Img className="post-card-image" variant="top" src={post.image_url} />
-                  <Card.Body>
-                    <Card.Title>
-                      {post.comment}
-                    </Card.Title>
-                    <Card.Text>
-                      <div className="text-muted">
-                        - {post.user_name}
-                      </div>
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">
-                      Uploaded: <Timestamp time={post.created_at} autoUpdate={60} />
-                      <br />
-                      <Timestamp time={post.created_at} format='full' />
-                    </small>
-                  </Card.Footer>
-                </Card>
-                <br />
-              </div>
-            ).reverse()}
-          </CardDeck>
-        </div>
+      <div className="center">
+        <h2>
+          Posts
+        </h2>
+        <br />
+        <CardDeck className="justify-content-center">
+          {this.state.posts.map((post, index) =>
+            <div className="post-card-container" key={`${post.id}${index}`}>
+              <Card className="post-card">
+                <Card.Img
+                  className="post-card-image"
+                  variant="top"
+                  src={post.image_url}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {post.comment}
+                  </Card.Title>
+                  <Card.Text className="text-muted">
+                    - {post.user_name}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">
+                    Uploaded: <Timestamp time={post.created_at} autoUpdate={60} />
+                    <br />
+                    <Timestamp time={post.created_at} format='full' />
+                  </small>
+                </Card.Footer>
+              </Card>
+            </div>
+          ).reverse()}
+        </CardDeck>
       </div>
     )
   }
 }
 
-export default withAuth(Posts);
+export default withAuth(Posts)

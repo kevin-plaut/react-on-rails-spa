@@ -8,6 +8,7 @@ gem "rails", "~> 5.2.2"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "coffee-rails"
+gem "email_validator"
 gem "jbuilder"
 gem "knock"
 gem "paranoia"
@@ -16,6 +17,7 @@ gem "rb-readline"
 gem "sass-rails"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier"
+gem "validate_url"
 gem "webpacker", "~> 3.5"
 
 group :development, :test do

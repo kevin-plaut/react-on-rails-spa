@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, NavLink } from 'react-router-dom'
-import { Card, FormControl, Form } from 'react-bootstrap'
+import { Form, FormControl, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 
 const Auth = new AuthService()
@@ -26,7 +26,7 @@ class Login extends Component {
     Auth.login(this.state.email, this.state.password)
       .then (successUser => {
         console.log("Login Success", successUser);
-        this.setState({loginSuccess: true});
+        this.setState({loginSuccess: true})
       })
       .catch(err =>{ alert(err) })
   }
@@ -34,9 +34,9 @@ class Login extends Component {
   render() {
     return (
       <div className="center">
-        <h1>
+        <h2>
           Login
-        </h1>
+        </h2>
         <br />
         <Form className="login-form">
           <FormControl
@@ -56,26 +56,24 @@ class Login extends Component {
             value={this.state.password}
           />
           <br />
-          <FormControl
-            className="login-form-control"
+          <Button
+            variant="dark"
             type="submit"
-            name="submit"
             onClick={this.handleSubmit.bind(this)}
-          />
+          >
+            Submit
+          </Button>
         </Form>
         {this.state.loginSuccess && <Redirect to="/welcome" />}
-        <br />
-        <div>
+        <small className="text-muted">
           Don't have an account?&nbsp;
-          <NavLink to="/signup">
-            <a href="/signup">
-              Sign up
-            </a>
+          <NavLink to="/signup" as="span">
+            Sign up
           </NavLink>
-        </div>
+        </small>
       </div>
     )
   }
 }
 
-export default Login;
+export default Login
