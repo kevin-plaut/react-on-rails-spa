@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import UserService from '../../services/UserService'
 import withAuth from '../../services/withAuth'
-import puppies3 from '../../assets/images/puppies-park-3.png'
+import pups_welcome from '../../assets/images/pups-welcome.png'
 
 const Auth = new AuthService()
 const User = new UserService()
@@ -51,9 +51,9 @@ class Welcome extends Component {
           {this.state.clickedCreatePost && <Redirect to="/newpost" />}
           <br />
           <img
-            className="welcome-image"
-            src={puppies3}
-            alt="Puppies at the park (3)"
+            className="image-md"
+            src={pups_welcome}
+            alt="Four dogs on a bed"
           />
         </div>
       </div>
