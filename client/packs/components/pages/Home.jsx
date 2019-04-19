@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import AuthService from '../../services/AuthService'
-import puppies1 from '../../assets/images/puppies-park-1.png'
+import pups_home from '../../assets/images/pups-home.png'
 
 const Auth = new AuthService()
 
@@ -13,7 +13,7 @@ class Home extends Component {
           Home
         </h2>
         <h4>
-          Thanks for stopping by!
+          Thanks fur stopping by!
         </h4>
         {!Auth.loggedIn() &&
           <small className="text-muted">
@@ -34,9 +34,9 @@ class Home extends Component {
           </small>
         }
         <img
-          className="home-image"
-          src={puppies1}
-          alt="Puppies at the park (1)"
+          className="image-md"
+          src={pups_home}
+          alt="Four dogs on a bed"
         />
       </div>
     )
