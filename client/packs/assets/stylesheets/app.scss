@@ -1,48 +1,36 @@
-@import '~bootstrap/dist/css/bootstrap';
+@import "~bootstrap/dist/css/bootstrap";
 
 .center {
   display: block;
   margin: auto;
   padding: 10px;
   text-align: center;
-};
+}
 
 a:hover {
   text-decoration: none;
 }
 
-.home-image {
-  width: 30em;
-  height: 40em;
-  padding: 1em;
-  object-fit: cover;
-};
-
-.about-image {
+.image-md {
   width: 35em;
   height: 25em;
   padding: 1em;
   object-fit: cover;
-};
+}
 
-.welcome-image {
-  width: 35em;
-  height: 25em;
-  padding: 1em;
-  object-fit: cover;
-};
-
-.login-form, .signup-form {
+.login-form,
+.signup-form {
   display: block;
   margin: auto;
   width: 16em !important;
-};
+}
 
-.login-form-control, .signup-form-control {
+.login-form-control,
+.signup-form-control {
   display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-};
+}
 
 .new-post-card {
   display: block;
@@ -50,24 +38,24 @@ a:hover {
   padding: 1em;
   text-align: center;
   width: 35em;
-};
+}
 
 .new-post-form {
   display: block;
   margin: auto;
   text-align: left;
-};
+}
 
 .post-card-container {
   padding-bottom: 1em;
-};
+}
 
 .post-card {
   width: 20em;
   height: 100%;
-};
+}
 
 .post-card-image {
   height: 15em;
   object-fit: cover;
-};
+}
