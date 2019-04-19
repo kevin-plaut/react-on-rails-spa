@@ -1,9 +1,14 @@
 {
   "name": "react-on-rails-spa",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "A pretty awesome SPA",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": "11.10.0",
+    "npm": "6.7.0",
+    "yarn": "1.13.0"
+  },
   "dependencies": {
     "@rails/webpacker": "3.5.5",
     "abbrev": "1.1.1",
