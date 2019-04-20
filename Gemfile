@@ -14,6 +14,7 @@ gem "knock"
 gem "paranoia"
 gem "pg"
 gem "puma"
+gem "rack-cors"
 gem "rb-readline"
 gem "sass-rails"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

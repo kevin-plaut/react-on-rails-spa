@@ -25,7 +25,7 @@ export default function register() {
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
+      // serve\
       return;
     }
 
@@ -106,6 +106,12 @@ function checkValidServiceWorker(swUrl) {
         'No internet connection found. App is running in offline mode.'
       );
     });
+}
+
+const handler = require('serve-handler');
+
+module.exports = async (request, response) => {
+  await handler(request, response);
 }
 
 export function unregister() {
