@@ -35,6 +35,5 @@ yarn-debug.log*
 /public/packs
 /public/packs-test
 
-# Ignore master key and credentials
+# Ignore master key
 /config/master.key
-/config/credentials.yml.enc

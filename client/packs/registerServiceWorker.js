@@ -108,12 +108,6 @@ function checkValidServiceWorker(swUrl) {
     });
 }
 
-const handler = require('serve-handler');
-
-module.exports = async (request, response) => {
-  await handler(request, response);
-}
-
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
