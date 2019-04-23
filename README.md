@@ -1,4 +1,4 @@
-# <img src="https://chiefdakota.github.io/react-on-rails-spa/app/javascript/packs/assets/images/yay-fox.gif" alt="Yay Fox gif" /> React-on-Rails SPA <img src="https://chiefdakota.github.io/react-on-rails-spa/app/javascript/packs/assets/images/yay-fox.gif" alt="Yay Fox gif" />
+# <img src="/public/yay-fox.gif" alt="Yay Fox gif" /> React-on-Rails SPA <img src="/public/yay-fox.gif" alt="Yay Fox gif" />
 
 ## Setup
 
