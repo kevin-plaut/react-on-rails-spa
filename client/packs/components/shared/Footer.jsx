@@ -12,7 +12,7 @@ class Footer extends Component {
           fixed="bottom"
         >
           <div>
-            React-on-Rails SPA by&nbsp;
+            🐕 React-on-Rails SPA by&nbsp;
             <a href="https://github.com/ChiefDakota" target="new">
               ChiefDakota
             </a>

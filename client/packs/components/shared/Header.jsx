@@ -24,7 +24,7 @@ class Header extends Component {
         >
           <NavLink to="/" as="span">
             <Navbar.Brand href="/" as="span">
-              React-on-Rails SPA
+              🐕 React-on-Rails SPA
             </Navbar.Brand>
           </NavLink>
           <Navbar.Toggle />
