@@ -40,9 +40,10 @@ _We recommend using the following:_<br />
 
     * replace the `RAILS_MASTER_KEY` value with your new Master Key (found in `/config/master.key`)
 
+    * update the `POSTGRES_USERNAME` value to your Postgres username
+
     * update the `BASE_URL` value (if required, depending on your setup)
-    
-    * update the `POSTGRES_USERNAME` value to your postgres username
+
 
 * Create databases
     ```xml
