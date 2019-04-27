@@ -41,6 +41,8 @@ _We recommend using the following:_<br />
     * replace the `RAILS_MASTER_KEY` value with your new Master Key (found in `/config/master.key`)
 
     * update the `BASE_URL` value (if required, depending on your setup)
+    
+    * update the `POSTGRES_USERNAME` value to your postgres username
 
 * Create databases
     ```xml
@@ -80,7 +82,7 @@ _**PLEASE NOTE:** per_ `foreman`_'s docs we recommend installing the gem in your
     * Start a [Rails](https://github.com/rails/rails) server
 
         ```xml
-        bundle exec rails server -p 5000
+        bundle exec rails server -p 3000
         ```
 
 * Open another new window/tab/pane in Terminal
