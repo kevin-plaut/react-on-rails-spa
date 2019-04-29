@@ -12,8 +12,8 @@ a:hover {
 }
 
 .image-md {
-  width: 35em;
-  height: 25em;
+  width: 30em;
+  height: 30em;
   padding: 1em;
   object-fit: cover;
 }
@@ -37,7 +37,7 @@ a:hover {
   margin: auto;
   padding: 1em;
   text-align: center;
-  width: 35em;
+  width: 30em !important;
 }
 
 .new-post-form {
@@ -47,6 +47,7 @@ a:hover {
 }
 
 .post-card-container {
+  margin: auto;
   padding-bottom: 1em;
 }
 

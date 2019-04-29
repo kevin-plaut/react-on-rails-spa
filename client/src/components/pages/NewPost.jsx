@@ -54,7 +54,7 @@ class NewPost extends Component {
               <Form.Control
                 type="text"
                 name="image_url"
-                placeholder="ex: https://sample-videos.com/img/Sample-jpg-image-500kb.jpg"
+                placeholder="ex: https://example.com/image.jpg"
                 onChange={this.handleChange.bind(this)}
               />
             </Form.Group>
