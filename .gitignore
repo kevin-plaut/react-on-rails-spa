@@ -32,8 +32,8 @@ yarn-debug.log*
 
 # Ignore public files
 /public/assets
-/public/packs
-/public/packs-test
+/public/src
+/public/src-test
 
 # Ignore master key
 /config/master.key
