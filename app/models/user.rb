@@ -2,6 +2,7 @@ class User < ApplicationRecord
   acts_as_paranoid
   has_secure_password
   has_many :posts, dependent: :destroy
+  accepts_nested_attributes_for :posts, allow_destroy: true
 
   before_validation {
     (self.email = self.email.to_s.downcase)

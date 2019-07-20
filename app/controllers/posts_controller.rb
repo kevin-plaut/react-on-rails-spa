@@ -43,7 +43,12 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :image_url, :comment)
+    params.require(:post).permit(
+      :user_id,
+      :image_url,
+      :comment,
+      :photo
+    )
   end
 
   def authorize_update
