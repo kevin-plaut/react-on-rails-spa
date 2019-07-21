@@ -13,8 +13,8 @@ class NewPost extends Component {
   constructor() {
     super()
     this.state = {
-      selectedPostFiles: [],
       post: {
+        photo: [],
         comment: '',
         user_id: Auth.getUserId()
       },
@@ -26,113 +26,6 @@ class NewPost extends Component {
     let post = this.state.post
     post[event.target.name] = event.target.value
     this.setState({ post: post })
-  }
-
-  getNumberOfSelectedFiles() {
-    return this.state.selectedPostFiles.filter(el => {
-      return el._destroy !== true
-    }).length
-  }
-
-  renderUploadPostsButton() {
-    let numberOfSelectedPosts = this.getNumberOfSelectedFiles()
-    return (
-      <div>
-        <input
-          name="posts[]"
-          ref={field => (this.postsField = field)}
-          type="file"
-          disabled={this.state.isSubmittingForm}
-          multiple={true}
-          accept="image/*"
-          style={{
-            width: 0.1,
-            height: 0.1,
-            opacity: 0,
-            overflow: 'hidden',
-            position: 'absolute',
-            zIndex: -1
-          }}
-          id="posts"
-          onChange={e => this.handlePostsChange(e)}
-          className="form-control"
-        />
-        <label
-          disabled={this.state.isSubmittingForm}
-          className="btn btn-dark"
-          htmlFor="posts"
-        >
-          <GoCloudUpload />
-          &nbsp; &nbsp;
-          {numberOfSelectedPosts === 0
-            ? 'Upload Files'
-            : `${numberOfSelectedPosts} file${
-                numberOfSelectedPosts !== 1 ? 's' : ''
-              } selected`}
-        </label>
-      </div>
-    )
-  }
-
-  handlePostsChange() {
-    let selectedFiles = this.postsField.files
-    let { selectedPostFiles } = this.state
-    for (let i = 0; i < selectedFiles.length; i++) {
-      selectedPostFiles.push(selectedFiles.item(i))
-    } //end for
-
-    this.setState(
-      {
-        selectedPostFiles: selectedPostFiles
-      },
-      () => {
-        this.postsField.value = null
-      }
-    )
-  }
-
-  renderSelectedPostFiles() {
-    let fileDOMs = this.state.selectedPostFiles.map((el, index) => {
-      if (el._destroy) {
-        // we use _destroy to mark the removed photo
-        return null
-      }
-
-      return (
-        <div className="photos">
-          <li key={index}>
-            <div className="photo">
-              <img
-                width={155}
-                src={el.id ? el.url : URL.createObjectURL(el)}
-                style={{ alignSelf: 'center' }}
-              />
-              <GoX
-                className="remove"
-                onClick={() => this.removeSelectedPostFile(el, index)}
-              />
-            </div>
-            <div className="file-name">{el.name}</div>
-          </li>
-        </div>
-      )
-    })
-
-    return <ul className="selected-posts">{fileDOMs}</ul>
-  }
-
-  removeSelectedPostFile(photo, index) {
-    let { selectedPostFiles } = this.state
-    if (photo.id) {
-      // photo file that has been uploaded will be marked as destroy
-      selectedPostFiles[index]._destroy = true
-    } else {
-      selectedPostFiles.splice(index, 1)
-    }
-
-    this.setState({
-      selectedPostFiles: selectedPostFiles
-    })
   }
 
   handleSubmit(event) {
@@ -147,25 +40,49 @@ class NewPost extends Component {
       })
   }
 
-  buildFormData() {
-    let formData = new FormData()
-    formData.append('post[comment]', this.state.post.comment)
-    formData.append('post[user_id]', this.state.post.user_id)
-
-    let { selectedPostFiles } = this.state
-    for (let i = 0; i < selectedPostFiles.length; i++) {
-      let file = selectedPostFiles[i]
-      if (file.id) {
-        if (file._destroy) {
-          formData.append(`post[photos_attributes][${i}][id]`, file.id)
-          formData.append(`post[photos_attributes][${i}][_destroy]`, '1')
-        }
-      } else {
-        formData.append(`post[photos_attributes][${i}][photo]`, file, file.name)
+  renderSelectedPostFile() {
+    let fileDOM = this.state.post.photo.map((el, index) => {
+      if (el._destroy) {
+        // we use _destroy to mark the removed photo
+        return null
       }
-    }
-    return formData
+
+      return (
+        <div className="photos">
+          <li key={index}>
+            <div className="photo">
+              <img
+                width={145.5}
+                src={el.id ? el.url : URL.createObjectURL(el)}
+                style={{ alignSelf: 'center' }}
+              />
+              <GoX
+                className="remove"
+                // onClick={() => this.removeSelectedPostFile(el, index)}
+              />
+            </div>
+            <div className="file-name">{el.name}</div>
+          </li>
+        </div>
+      )
+    })
+
+    return <ul className="selected-posts">{fileDOM}</ul>
   }
+
+  // removeSelectedPostFile(photo) {
+  //   let { photo } = this.state.post.photo
+  //   if (photo.id) {
+  //     // photo file that has been uploaded will be marked as destroy
+  //     photo._destroy = true
+  //   } else {
+  //     photo.splice(0, 1)
+  //   }
+
+  //   this.setState({
+  //     photo: photo
+  //   })
+  // }
 
   render() {
     return (
@@ -185,13 +102,37 @@ class NewPost extends Component {
                 onChange={this.handleChange.bind(this)}
               />
               <br />
-              <div className="form-group">
-                <Form.Label>
-                  <b>Image</b>
-                </Form.Label>{' '}
-                {this.renderUploadPostsButton()}
-                {this.renderSelectedPostFiles()}
-              </div>
+              <Form.Label>
+                <b>Image</b>
+              </Form.Label>
+              <br />
+              <input
+                name="photo[]"
+                ref={field => (this.photo = field)}
+                type="file"
+                disabled={this.state.isSubmittingForm}
+                multiple={false}
+                accept="image/*"
+                style={{
+                  width: 0.1,
+                  height: 0.1,
+                  opacity: 0,
+                  overflow: 'hidden',
+                  position: 'absolute',
+                  zIndex: -1
+                }}
+                id="photo"
+                onChange={e => this.handleChange(e)}
+                className="form-control"
+              />
+              <label
+                disabled={this.state.isSubmittingForm}
+                className="btn btn-dark"
+              >
+                <GoCloudUpload />
+                &nbsp; &nbsp; Upload File
+              </label>
+              {this.renderSelectedPostFile()}
             </Form.Group>
             <Form.Group>
               <Form.Label>
