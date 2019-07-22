@@ -12,6 +12,7 @@ gem "email_validator"
 gem "jbuilder"
 gem "knock"
 gem "paperclip", "~> 5.1.0"
+gem 'paperclip-rack', require: 'paperclip/rack'
 gem "paranoia"
 gem "pg"
 gem "puma"

@@ -5,6 +5,7 @@ import { GoCloudUpload, GoX } from 'react-icons/go'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
+import axiosClient from '../../../../axiosClient'
 
 const Auth = new AuthService()
 const Post = new PostService()
@@ -15,6 +16,7 @@ class NewPost extends Component {
     this.state = {
       selectedPostFiles: [],
       post: {
+        photo: {},
         comment: '',
         user_id: Auth.getUserId()
       },
@@ -26,6 +28,7 @@ class NewPost extends Component {
     let post = this.state.post
     post[event.target.name] = event.target.value
     this.setState({ post: post })
+    console.log(this.state)
   }
 
   getNumberOfSelectedFiles() {
@@ -43,8 +46,8 @@ class NewPost extends Component {
           ref={field => (this.postsField = field)}
           type="file"
           disabled={this.state.isSubmittingForm}
-          multiple={true}
           accept="image/*"
+          multiple={true}
           style={{
             width: 0.1,
             height: 0.1,
@@ -87,6 +90,7 @@ class NewPost extends Component {
       },
       () => {
         this.postsField.value = null
+        console.log(this.state)
       }
     )
   }
@@ -99,8 +103,8 @@ class NewPost extends Component {
       }
 
       return (
-        <div className="photos">
-          <li key={index}>
+        <div className="photos" key={index}>
+          <li>
             <div className="photo">
               <img
                 width={155}
@@ -135,6 +139,63 @@ class NewPost extends Component {
     })
   }
 
+  handleFormSubmit() {
+    let { post } = this.state
+    post.errors = {}
+    this.setState(
+      {
+        isSubmittingForm: true,
+        post: post
+      },
+      () => {
+        this.submitForm()
+      }
+    )
+  }
+
+  buildFormData() {
+    let formData = new FormData()
+    formData.append('post[comment]', this.state.post.comment)
+    formData.append('post[user_id]', this.state.post.user_id)
+
+    var selectedPostFiles = this.state.selectedPostFiles
+    var file = selectedPostFiles[selectedPostFiles.length - 1]
+    formData.append(`post[photo]`, { file })
+
+    return formData
+  }
+
+  submitForm() {
+    let submitMethod = this.state.post.id ? 'patch' : 'post'
+    let url = this.state.post.id
+      ? `/posts/${this.state.post.id}.json`
+      : '/posts.json'
+
+    axiosClient[submitMethod](url, this.buildFormData(), {
+      onUploadProgress: progressEvent => {
+        let percentage = (progressEvent.loaded * 100.0) / progressEvent.total
+        this.setState({
+          submitFormProgress: percentage
+        })
+      }
+    })
+      .then(response => {
+        this.setState({
+          didFormSubmissionComplete: true
+        })
+        this.handleSubmit()
+      })
+      .catch(error => {
+        let { post } = this.state
+        post.errors = error.response.data
+        this.setState({
+          isSubmittingForm: false,
+          submitFormProgress: 0,
+          post: post
+        })
+      })
+  }
+
   handleSubmit(event) {
     event.preventDefault()
     Post.createPost(Auth.getToken(), this.state.post)
@@ -147,26 +208,6 @@ class NewPost extends Component {
       })
   }
 
-  buildFormData() {
-    let formData = new FormData()
-    formData.append('post[comment]', this.state.post.comment)
-    formData.append('post[user_id]', this.state.post.user_id)
-
-    let { selectedPostFiles } = this.state
-    for (let i = 0; i < selectedPostFiles.length; i++) {
-      let file = selectedPostFiles[i]
-      if (file.id) {
-        if (file._destroy) {
-          formData.append(`post[photos_attributes][${i}][id]`, file.id)
-          formData.append(`post[photos_attributes][${i}][_destroy]`, '1')
-        }
-      } else {
-        formData.append(`post[photos_attributes][${i}][photo]`, file, file.name)
-      }
-    }
-    return formData
-  }
-
   render() {
     return (
       <div className="center">
@@ -175,16 +216,6 @@ class NewPost extends Component {
         <Card className="new-post-card">
           <Form className="new-post-form">
             <Form.Group>
-              <Form.Label>
-                <b>Image URL</b>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                name="image_url"
-                placeholder="ex: https://example.com/image.jpg"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br />
               <div className="form-group">
                 <Form.Label>
                   <b>Image</b>
@@ -208,7 +239,7 @@ class NewPost extends Component {
               variant="dark"
               type="submit"
               className="center"
-              onClick={this.handleSubmit.bind(this)}
+              onClick={this.handleFormSubmit.bind(this)}
             >
               Submit
             </Button>
