@@ -53,7 +53,7 @@ class Posts extends Component {
                   <Card.Img
                     className="post-card-image"
                     variant="top"
-                    src={post.photo.webkitRelativePath}
+                    src={post.image_url}
                   />
                   <Card.Body>
                     <Card.Title>{post.comment}</Card.Title>

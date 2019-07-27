@@ -16,9 +16,13 @@ class NewPost extends Component {
     this.state = {
       selectedPostFiles: [],
       post: {
-        photo: {},
         comment: '',
-        user_id: Auth.getUserId()
+        user_id: Auth.getUserId(),
+        image_url: '',
+        photo_file_name: '',
+        photo_content_type: '',
+        photo_file_size: '',
+        photo_updated_at: ''
       },
       createSuccess: false
     }
@@ -141,10 +145,8 @@ class NewPost extends Component {
 
   handleFormSubmit() {
     let { post } = this.state
-    post.errors = {}
     this.setState(
       {
-        isSubmittingForm: true,
         post: post
       },
       () => {
@@ -160,7 +162,11 @@ class NewPost extends Component {
 
     var selectedPostFiles = this.state.selectedPostFiles
     var file = selectedPostFiles[selectedPostFiles.length - 1]
-    formData.append(`post[photo]`, { file })
+    formData.append('post[image_url]', file.webkitRelativePath)
+    formData.append('post[photo_file_name]', file.name)
+    formData.append('post[photo_content_type]', file.type)
+    formData.append('post[photo_file_size]', file.size)
+    formData.append('post[photo_updated_at]', file.lastModifiedDate)
 
     return formData
   }
@@ -171,37 +177,13 @@ class NewPost extends Component {
       ? `/posts/${this.state.post.id}.json`
       : '/posts.json'
 
-    axiosClient[submitMethod](url, this.buildFormData(), {
-      onUploadProgress: progressEvent => {
-        let percentage = (progressEvent.loaded * 100.0) / progressEvent.total
-        this.setState({
-          submitFormProgress: percentage
-        })
-      }
-    })
+    axiosClient[submitMethod](url, this.buildFormData())
+      // Post.createPost(Auth.getToken(), this.state.post)
       .then(response => {
+        console.log('Post Success', response.createSuccess)
         this.setState({
-          didFormSubmissionComplete: true
+          createSuccess: true
         })
-        this.handleSubmit()
-      })
-      .catch(error => {
-        let { post } = this.state
-        post.errors = error.response.data
-        this.setState({
-          isSubmittingForm: false,
-          submitFormProgress: 0,
-          post: post
-        })
-      })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    Post.createPost(Auth.getToken(), this.state.post)
-      .then(successPost => {
-        console.log('Post Success', successPost)
-        this.setState({ createSuccess: true })
       })
       .catch(err => {
         alert(err)

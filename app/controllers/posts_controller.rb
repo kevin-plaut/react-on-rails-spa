@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   before_action :authorize_update, only: [:update, :destroy]
 
   def index
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:comment, :user_id, :photo => {})
+    params.require(:post).permit(:comment, :user_id, :image_url, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at)
   end
 
   def authorize_update
