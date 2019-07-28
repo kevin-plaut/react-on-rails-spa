@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
-  before_action :authorize_update, only: [:update, :destroy]
+  # before_action :authenticate_user
+  # before_action :authorize_update, only: [:update, :destroy]
 
   def index
-    posts = Post.all
+    posts = Post.all.with_attached_image
     render json: posts, status: 200
   end
 
@@ -27,8 +27,10 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    if post.update(post_params)
+    if UpdatePostService.new(post, post_params).call
       render json: post, status: 200
+    else
+      render json: {errors: post.errors}, status: 422
     end
   end
 
@@ -43,7 +45,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :image_url, :comment)
+    params.require(:post).permit(:user_id, :comment, :image)
   end
 
   def authorize_update

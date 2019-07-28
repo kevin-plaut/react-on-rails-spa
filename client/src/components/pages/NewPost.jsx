@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+import { getPosts, updatePost } from '../../api/postApi.js'
 import { Card, Form, Button } from 'react-bootstrap'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
@@ -13,10 +15,11 @@ class NewPost extends Component {
     super()
     this.state = {
       post: {
-        comment: "",
+        comment: '',
         user_id: Auth.getUserId()
       },
-      createSuccess: false,
+      selectedImage: null,
+      createSuccess: false
     }
   }
 
@@ -28,28 +31,33 @@ class NewPost extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    Post.createPost(Auth.getToken(), this.state.post)
-      .then (successPost => {
-        console.log("Post Success", successPost)
-        this.setState({createSuccess: true})
+
+    const { post, selectedImage } = this.state
+    const new_post = Post.createPost(Auth.getToken(), this.state.post)
+
+    if (selectedImage !== null) {
+      new_post.append('image', selectedImage)
+    }
+    new_post
+      .then(successPost => {
+        console.log('Post Success', successPost)
+        this.setState({ createSuccess: true })
       })
-      .catch(err =>{ alert(err) })
+      .catch(err => {
+        alert(err)
+      })
   }
 
   render() {
     return (
       <div className="center">
-        <h2>
-          New Post
-        </h2>
+        <h2>New Post</h2>
         <br />
         <Card className="new-post-card">
           <Form className="new-post-form">
             <Form.Group>
               <Form.Label>
-                <b>
-                  Image URL
-                </b>
+                <b>Image URL</b>
               </Form.Label>
               <Form.Control
                 type="text"
@@ -60,9 +68,7 @@ class NewPost extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Label>
-                <b>
-                  Comment
-                </b>
+                <b>Comment</b>
               </Form.Label>
               <Form.Control
                 type="text"

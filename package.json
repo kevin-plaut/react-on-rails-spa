@@ -7,7 +7,7 @@
   "engines": {
     "node": "11.10.0",
     "npm": "6.7.0",
-    "yarn": "1.13.0"
+    "yarn": "1.15.2"
   },
   "dependencies": {
     "@rails/webpacker": "3.5.5",
@@ -40,6 +40,7 @@
     "autoprefixer": "7.2.6",
     "aws-sign2": "0.7.0",
     "aws4": "1.8.0",
+    "axios": "0.19.0",
     "babel-core": "6.26.3",
     "babel-generator": "6.26.1",
     "babel-helper-builder-binary-assignment-operator-visitor": "6.24.1",
@@ -528,6 +529,7 @@
     "react": "16.8.2",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "16.8.2",
+    "react-dropzone-component": "3.2.0",
     "react-is": "16.8.2",
     "react-router": "^4.3.1",
     "react-router-dom": "4.3.1",
