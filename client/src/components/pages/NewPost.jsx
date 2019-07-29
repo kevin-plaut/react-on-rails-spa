@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { getPosts, updatePost } from '../../api/postApi.js'
 import { Card, Form, Button } from 'react-bootstrap'
+import ImageUploader from '../shared/ImageUploader'
 import AuthService from '../../services/AuthService'
 import PostService from '../../services/PostService'
 import withAuth from '../../services/withAuth'
@@ -16,9 +17,10 @@ class NewPost extends Component {
     this.state = {
       post: {
         comment: '',
-        user_id: Auth.getUserId()
+        user_id: Auth.getUserId(),
+        image: {}
       },
-      selectedImage: null,
+      selectedImage: '',
       createSuccess: false
     }
   }
@@ -31,14 +33,7 @@ class NewPost extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
-    const { post, selectedImage } = this.state
-    const new_post = Post.createPost(Auth.getToken(), this.state.post)
-
-    if (selectedImage !== null) {
-      new_post.append('image', selectedImage)
-    }
-    new_post
+    Post.createPost(Auth.getToken(), this.state.post)
       .then(successPost => {
         console.log('Post Success', successPost)
         this.setState({ createSuccess: true })
@@ -48,6 +43,10 @@ class NewPost extends Component {
       })
   }
 
+  selectImage = image => this.setState({ post: { image: image } })
+
+  unselectImage = () => this.setState({ post: { image: '' } })
+
   render() {
     return (
       <div className="center">
@@ -55,6 +54,18 @@ class NewPost extends Component {
         <br />
         <Card className="new-post-card">
           <Form className="new-post-form">
+            <Form.Group>
+              <React.Fragment>
+                <div className="card-image card-padding">
+                  <ImageUploader
+                    image={this.selectedImage}
+                    selectImage={this.selectImage}
+                    unselectImage={this.unselectImage}
+                  />
+                </div>
+                <div className="card-content">...</div>
+              </React.Fragment>
+            </Form.Group>
             <Form.Group>
               <Form.Label>
                 <b>Image URL</b>
