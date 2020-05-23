@@ -1,6 +1,6 @@
 {
   "name": "react-on-rails-spa",
-  "version": "0.1.0",
+  "version": "1.13.0",
   "description": "A pretty awesome SPA",
   "license": "MIT",
   "private": true,
@@ -391,6 +391,7 @@
     "needle": "2.2.4",
     "negotiator": "0.6.1",
     "next-tick": "1.0.0",
+    "node": "11.10.0",
     "node-forge": "0.7.5",
     "node-gyp": "3.8.0",
     "node-libs-browser": "2.2.0",
@@ -658,7 +659,8 @@
     "xtend": "4.0.1",
     "yallist": "3.0.3",
     "yargs": "6.6.0",
-    "yargs-parser": "4.2.1"
+    "yargs-parser": "4.2.1",
+    "yarn": "1.13.0"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
