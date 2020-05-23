@@ -660,7 +660,7 @@
     "yallist": "3.0.3",
     "yargs": "6.6.0",
     "yargs-parser": "4.2.1",
-    "yarn": "1.13.0"
+    "yarn": "1.22.0"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
