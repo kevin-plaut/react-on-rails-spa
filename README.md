@@ -106,8 +106,8 @@ _**PLEASE NOTE:** per_ `foreman`_'s docs we recommend installing the gem in your
 
 ## :star: Collaborators :star:
 
-[ChiefDakota](https://github.com/ChiefDakota)<br />
-[DenisePillette](https://github.com/DenisePillette)
+[Kevin-Plaut](https://github.com/kevin-plaut)<br />
+[DenisePlaut](https://github.com/DenisePlaut)
 
 ## License
 
